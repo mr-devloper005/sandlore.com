@@ -19,20 +19,21 @@ export function PageShell({
     <div className="min-h-screen bg-background">
       <NavbarShell />
       <main>
-        <section className="border-b border-border bg-secondary/30">
-          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <section className="border-b border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]">
+          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
-                <h1 className="text-3xl font-bold text-foreground">{title}</h1>
+                <p className="issue-kicker">Archive surface</p>
+                <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground sm:text-5xl">{title}</h1>
                 {description && (
-                  <p className="mt-2 max-w-2xl text-muted-foreground">{description}</p>
+                  <p className="soft-caption mt-4 max-w-2xl text-sm leading-8">{description}</p>
                 )}
               </div>
-              {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
+              {actions && <div className="flex flex-wrap gap-3 lg:justify-end">{actions}</div>}
             </div>
           </div>
         </section>
-        <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {children}
         </section>
       </main>

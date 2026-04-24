@@ -15,13 +15,14 @@ export default function TermsPage() {
   return (
     <PageShell
       title="Terms of Service"
-      description={`The rules and guidelines for using ${SITE_CONFIG.name}.`}
+      description={`The rules and usage guidelines for reading, publishing, and using ${SITE_CONFIG.name}.`}
     >
-      <Card className="border-border bg-card">
-        <CardContent className="space-y-4 p-6">
+      <Card className="magazine-frame rounded-[2.2rem] border-border bg-card">
+        <CardContent className="space-y-4 p-6 sm:p-8">
           <p className="text-xs text-muted-foreground">Last updated: March 16, 2026</p>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">Clear expectations for using the archive and its connected publishing surfaces.</h2>
           {sections.map((section) => (
-            <div key={section.title} className="rounded-lg border border-border bg-secondary/40 p-4">
+            <div key={section.title} className="rounded-[1.5rem] border border-border bg-secondary/40 p-4">
               <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{section.body}</p>
             </div>

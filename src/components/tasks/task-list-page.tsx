@@ -26,17 +26,17 @@ const taskIcons: Record<TaskKey, any> = {
 
 const variantShells = {
   'listing-directory': 'bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.08),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]',
-  'listing-showcase': 'bg-[linear-gradient(180deg,#ffffff_0%,#f4f9ff_100%)]',
-  'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.08),transparent_20%),linear-gradient(180deg,#fff8ef_0%,#ffffff_100%)]',
-  'article-journal': 'bg-[linear-gradient(180deg,#fffdf9_0%,#f7f1ea_100%)]',
+  'listing-showcase': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]',
+  'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(191,70,70,0.08),transparent_20%),linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
+  'article-journal': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]',
   'image-masonry': 'bg-[linear-gradient(180deg,#09101d_0%,#111c2f_100%)] text-white',
   'image-portfolio': 'bg-[linear-gradient(180deg,#07111f_0%,#13203a_100%)] text-white',
-  'profile-creator': 'bg-[linear-gradient(180deg,#0a1120_0%,#101c34_100%)] text-white',
+  'profile-creator': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
   'profile-business': 'bg-[linear-gradient(180deg,#f6fbff_0%,#ffffff_100%)]',
-  'classified-bulletin': 'bg-[linear-gradient(180deg,#edf3e4_0%,#ffffff_100%)]',
+  'classified-bulletin': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
   'classified-market': 'bg-[linear-gradient(180deg,#f4f6ef_0%,#ffffff_100%)]',
   'sbm-curation': 'bg-[linear-gradient(180deg,#fff7ee_0%,#ffffff_100%)]',
-  'sbm-library': 'bg-[linear-gradient(180deg,#f7f8fc_0%,#ffffff_100%)]',
+  'sbm-library': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
 } as const
 
 export async function TaskListPage({ task, category }: { task: TaskKey; category?: string }) {
@@ -71,18 +71,18 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
       }
     : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
       ? {
-          muted: 'text-[#72594a]',
-          panel: 'border border-[#dbc6b6] bg-white/90',
-          soft: 'border border-[#dbc6b6] bg-[#fff8ef]',
-          input: 'border border-[#dbc6b6] bg-white text-[#2f1d16]',
-          button: 'bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
+          muted: 'text-[#7EACB5]',
+          panel: 'border border-[#EDDCC6] bg-white/90',
+          soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
+          input: 'border border-[#EDDCC6] bg-white text-[#BF4646]',
+          button: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
         }
       : {
-          muted: 'text-slate-600',
-          panel: 'border border-slate-200 bg-white',
-          soft: 'border border-slate-200 bg-slate-50',
-          input: 'border border-slate-200 bg-white text-slate-950',
-          button: 'bg-slate-950 text-white hover:bg-slate-800',
+          muted: 'text-[#7EACB5]',
+          panel: 'border border-[#EDDCC6] bg-white',
+          soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
+          input: 'border border-[#EDDCC6] bg-white text-[#BF4646]',
+          button: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
         }
 
   return (
@@ -123,9 +123,9 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         {layoutKey === 'listing-directory' || layoutKey === 'listing-showcase' ? (
           <section className="mb-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div className={`rounded-[2rem] p-7 shadow-[0_24px_70px_rgba(15,23,42,0.07)] ${ui.panel}`}>
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70"><Icon className="h-4 w-4" /> {taskConfig?.label || task}</div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>Built with a cleaner scan rhythm, stronger metadata grouping, and a structure designed for business discovery rather than editorial reading.</p>
+              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70"><Icon className="h-4 w-4" /> Supporting archive</div>
+              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
+              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>A denser, faster-scanning surface for structured entries, references, and utility-first supporting pages.</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href={taskConfig?.route || '#'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.button}`}>Explore results <ArrowRight className="h-4 w-4" /></Link>
                 <Link href="/search" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.soft}`}>Open search</Link>
@@ -147,15 +147,15 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         ) : null}
 
         {layoutKey === 'article-editorial' || layoutKey === 'article-journal' ? (
-          <section className="mb-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <div>
-              <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-              <h1 className="mt-3 max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This reading surface uses slower pacing, stronger typographic hierarchy, and more breathing room so long-form content feels intentional rather than squeezed into a generic feed.</p>
+          <section className="mb-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+            <div className="rounded-[2.4rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-7 shadow-[0_24px_70px_rgba(126,172,181,0.14)] sm:p-9">
+              <p className={`text-xs uppercase tracking-[0.34em] ${ui.muted}`}>Archive issue</p>
+              <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-foreground sm:text-6xl">{taskConfig?.description || 'Latest posts'}</h1>
+              <p className={`mt-6 max-w-2xl text-sm leading-8 ${ui.muted}`}>A print-minded archive with larger headlines, quieter controls, and more deliberate separation between feature stories and supporting entries.</p>
             </div>
             <div className={`rounded-[2rem] p-6 ${ui.panel}`}>
               <p className={`text-xs font-semibold uppercase tracking-[0.24em] ${ui.muted}`}>Reading note</p>
-              <p className={`mt-4 text-sm leading-7 ${ui.muted}`}>Use category filters to jump between topics without collapsing the page into the same repeated card rhythm used by other task types.</p>
+              <p className={`mt-4 text-sm leading-7 ${ui.muted}`}>Use categories to move through the archive without losing the calmer editorial pacing of the page.</p>
               <form className="mt-5 flex items-center gap-3" action={taskConfig?.route || '#'}>
                 <select name="category" defaultValue={normalizedCategory} className={`h-11 flex-1 rounded-xl px-3 text-sm ${ui.input}`}>
                   <option value="all">All categories</option>
@@ -176,7 +176,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
                 <Icon className="h-3.5 w-3.5" /> Visual feed
               </div>
               <h1 className="mt-5 text-5xl font-semibold tracking-[-0.05em]">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This surface leans into stronger imagery, larger modules, and more expressive spacing so visual content feels materially different from reading and directory pages.</p>
+              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>A darker gallery surface with larger media, fewer text interruptions, and more atmospheric pacing than the reading archive.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className={`min-h-[220px] rounded-[2rem] ${ui.panel}`} />
@@ -192,8 +192,8 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
               <div className={`min-h-[240px] rounded-[2rem] ${ui.soft}`} />
               <div>
                 <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-                <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Profiles with stronger identity, trust, and reputation cues.</h1>
-                <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This layout prioritizes the person or business surface first, then lets the feed continue below without borrowing the same visual logic used by articles or listings.</p>
+                <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Profiles with stronger identity, portrait, and trust cues.</h1>
+                <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This page gives authors, studios, and organizations a quieter portrait-led shell instead of repeating article or listing layouts.</p>
               </div>
             </div>
           </section>
@@ -203,7 +203,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           <section className="mb-12 grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className={`rounded-[1.8rem] p-6 ${ui.panel}`}>
               <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Fast-moving notices, offers, and responses in a compact board format.</h1>
+              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Fast-moving notices, offers, and responses in a bulletin-board format.</h1>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {['Quick to scan', 'Shorter response path', 'Clearer urgency cues'].map((item) => (
@@ -219,8 +219,8 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           <section className="mb-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
               <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Curated resources arranged more like collections than a generic post feed.</h1>
-              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>Bookmarks, saved resources, and reference-style items need calmer grouping and lighter metadata. This variant gives them that separation.</p>
+              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Curated resources arranged more like shelves than a generic post feed.</h1>
+              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>Bookmarks, saved references, and collections get a library-like rhythm with quieter metadata and stronger textual grouping.</p>
             </div>
             <div className={`rounded-[2rem] p-6 ${ui.panel}`}>
               <p className={`text-xs uppercase tracking-[0.24em] ${ui.muted}`}>Collection filter</p>
@@ -234,6 +234,44 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
                 <button type="submit" className={`h-11 rounded-xl px-4 text-sm font-medium ${ui.button}`}>Apply</button>
               </form>
             </div>
+          </section>
+        ) : null}
+
+        {task === 'pdf' ? (
+          <section className="mb-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+            <div className="rounded-[2.2rem] border border-[#dacfbf] bg-[linear-gradient(180deg,#fffdf8_0%,#f2ebde_100%)] p-7 shadow-[0_20px_60px_rgba(57,46,33,0.08)]">
+              <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Document archive</p>
+              <h1 className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-[#BF4646]">{taskConfig?.description || 'Documents and reports'}</h1>
+              <p className="mt-5 max-w-2xl text-sm leading-8 text-[#7EACB5]">Reports, guides, and downloadable files are presented more like a quiet index than a social feed.</p>
+            </div>
+            <form className="rounded-[2rem] border border-[#EDDCC6] bg-white p-6 shadow-[0_18px_50px_rgba(126,172,181,0.12)]" action={taskConfig?.route || '#'}>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#7EACB5]">Filter archive</p>
+              <div className="mt-4 flex items-center gap-3">
+                <select name="category" defaultValue={normalizedCategory} className="h-11 flex-1 rounded-xl border border-[#EDDCC6] bg-white px-3 text-sm text-[#BF4646]">
+                  <option value="all">All categories</option>
+                  {CATEGORY_OPTIONS.map((item) => (
+                    <option key={item.slug} value={item.slug}>{item.name}</option>
+                  ))}
+                </select>
+                <button type="submit" className="h-11 rounded-xl bg-[#BF4646] px-4 text-sm font-medium text-[#FFF4EA]">Apply</button>
+              </div>
+            </form>
+          </section>
+        ) : null}
+
+        {task === 'comment' ? (
+          <section className="mb-12 rounded-[2.2rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-8 shadow-[0_20px_60px_rgba(126,172,181,0.14)]">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Annotations desk</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#BF4646]">Responses, notes, and context kept close to the writing.</h1>
+            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#7EACB5]">Comment surfaces stay lighter and more text-led so they read like annotations beneath the archive rather than a separate noisy feed.</p>
+          </section>
+        ) : null}
+
+        {task === 'org' ? (
+          <section className="mb-12 rounded-[2.2rem] border border-[#EDDCC6] bg-white p-8 shadow-[0_20px_60px_rgba(126,172,181,0.14)]">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Collective profiles</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#BF4646]">Organizations framed with the same calm editorial tone as the archive.</h1>
+            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#7EACB5]">Teams, studios, and institutions sit between profile and directory surfaces, with stronger identity cues and less utility clutter.</p>
           </section>
         ) : null}
 

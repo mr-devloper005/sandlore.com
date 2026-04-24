@@ -101,14 +101,14 @@ function getDirectoryTone(brandPack: string) {
 
 function getEditorialTone() {
   return {
-    shell: 'bg-[#fbf6ee] text-[#241711]',
-    panel: 'border border-[#dcc8b7] bg-[#fffdfa] shadow-[0_24px_60px_rgba(77,47,27,0.08)]',
-    soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-    muted: 'text-[#6e5547]',
-    title: 'text-[#241711]',
-    badge: 'bg-[#241711] text-[#fff1e2]',
-    action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    actionAlt: 'border border-[#dcc8b7] bg-transparent text-[#241711] hover:bg-[#f5e7d7]',
+    shell: 'bg-[#FFF4EA] text-[#BF4646]',
+    panel: 'border border-[#EDDCC6] bg-white shadow-[0_24px_60px_rgba(126,172,181,0.14)]',
+    soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
+    muted: 'text-[#7EACB5]',
+    title: 'text-[#BF4646]',
+    badge: 'bg-[#BF4646] text-[#FFF4EA]',
+    action: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
+    actionAlt: 'border border-[#EDDCC6] bg-transparent text-[#7EACB5] hover:bg-[#EDDCC6]',
   }
 }
 
@@ -272,72 +272,164 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
   const tone = getEditorialTone()
   const lead = articlePosts[0]
   const side = articlePosts.slice(1, 5)
+  const archive = articlePosts.slice(1, 4)
+  const closing = articlePosts.slice(4, 7)
 
   return (
     <main className={tone.shell}>
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div>
-            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>
-              <FileText className="h-3.5 w-3.5" />
-              Reading-first publication
-            </span>
-            <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-              Essays, analysis, and slower reading designed like a publication, not a dashboard.
-            </h1>
-            <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={primaryTask?.route || '/articles'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                Start reading
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/about" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                About the publication
-              </Link>
-            </div>
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="issue-rule flex flex-wrap items-center justify-between gap-3 border-b pb-5">
+          <div className="flex items-center gap-3">
+            <span className="issue-kicker">Issue No. 01</span>
+            <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>Article-led edition</span>
           </div>
-
-          <aside className={`rounded-[2rem] p-6 ${tone.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Inside this issue</p>
-            <div className="mt-5 space-y-5">
-              {side.map((post) => (
-                <Link key={post.id} href={`/articles/${post.slug}`} className="block border-b border-black/10 pb-5 last:border-b-0 last:pb-0">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-60">Feature</p>
-                  <h3 className="mt-2 text-xl font-semibold">{post.title}</h3>
-                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Long-form perspective with a calmer reading rhythm.'}</p>
-                </Link>
-              ))}
-            </div>
-          </aside>
+          <div className={`flex items-center gap-5 text-xs uppercase tracking-[0.24em] ${tone.muted}`}>
+            <span>{SITE_CONFIG.name}</span>
+            <span>{articlePosts.length || 1} stories in view</span>
+          </div>
         </div>
 
-        {lead ? (
-          <div className={`mt-12 overflow-hidden rounded-[2.5rem] ${tone.panel}`}>
-            <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="relative min-h-[360px] overflow-hidden">
-                <ContentImage src={getPostImage(lead)} alt={lead.title} fill className="object-cover" />
+        <div className="grid gap-8 pt-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+          {lead ? (
+            <Link href={`/articles/${lead.slug}`} className={`group overflow-hidden rounded-[2.6rem] ${tone.panel}`}>
+              <div className="grid lg:grid-cols-[0.94fr_1.06fr]">
+                <div className="relative min-h-[420px] overflow-hidden">
+                  <ContentImage src={getPostImage(lead)} alt={lead.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                </div>
+                <div className="flex flex-col justify-between p-7 sm:p-8 lg:p-10">
+                  <div>
+                    <p className="issue-kicker">Lead story</p>
+                    <h1 className={`mt-4 max-w-xl text-5xl font-semibold leading-[0.95] tracking-[-0.07em] sm:text-6xl ${tone.title}`}>
+                      {lead.title}
+                    </h1>
+                    <p className={`mt-6 max-w-lg text-sm leading-8 ${tone.muted}`}>
+                      {lead.summary || 'A slower feature with room for atmosphere, context, and deliberate reading.'}
+                    </p>
+                  </div>
+                  <div className="mt-8 flex items-center justify-between gap-4">
+                    <span className={`text-xs uppercase tracking-[0.24em] ${tone.muted}`}>Open feature</span>
+                    <span className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
+                      Read article
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="p-8 lg:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Lead story</p>
-                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em]">{lead.title}</h2>
-                <p className={`mt-4 text-sm leading-8 ${tone.muted}`}>{lead.summary || 'A more deliberate lead story surface with room for a proper narrative setup.'}</p>
-                <Link href={`/articles/${lead.slug}`} className={`mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                  Read article
+            </Link>
+          ) : (
+            <div className={`rounded-[2.6rem] p-8 ${tone.panel}`}>
+              <p className="issue-kicker">Lead story</p>
+              <h1 className={`mt-4 text-5xl font-semibold tracking-[-0.07em] sm:text-6xl ${tone.title}`}>
+                A calmer home for long-form reading and visual essays.
+              </h1>
+              <p className={`mt-6 max-w-2xl text-sm leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
+            </div>
+          )}
+
+          <div className="grid gap-6">
+            <div className={`rounded-[2.2rem] p-7 ${tone.soft}`}>
+              <p className="issue-kicker">Masthead note</p>
+              <h2 className={`mt-4 text-4xl font-semibold leading-[1] tracking-[-0.06em] ${tone.title} sm:text-5xl`}>
+                Stories arranged with the pace of a print issue.
+              </h2>
+              <p className={`mt-5 max-w-xl text-sm leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href={primaryTask?.route || '/articles'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
+                  Open archive
                   <ArrowRight className="h-4 w-4" />
                 </Link>
+                <Link href="/search" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
+                  Search archive
+                </Link>
               </div>
             </div>
-          </div>
-        ) : null}
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {supportTasks.slice(0, 3).map((task) => (
-            <Link key={task.key} href={task.route} className={`rounded-[1.8rem] p-6 ${tone.soft}`}>
-              <h3 className="text-xl font-semibold">{task.label}</h3>
-              <p className={`mt-3 text-sm leading-7 ${tone.muted}`}>{task.description}</p>
-            </Link>
+            <aside className={`rounded-[2.2rem] p-6 ${tone.panel}`}>
+              <div className="flex items-center justify-between gap-4">
+                <p className="issue-kicker">Inside this issue</p>
+                <FileText className="h-4 w-4 opacity-60" />
+              </div>
+              <div className="mt-5 space-y-5">
+                {side.map((post, index) => (
+                  <Link key={post.id} href={`/articles/${post.slug}`} className="block border-b border-black/10 pb-5 last:border-b-0 last:pb-0">
+                    <p className={`text-[11px] font-semibold uppercase tracking-[0.26em] ${tone.muted}`}>Feature {String(index + 2).padStart(2, '0')}</p>
+                    <h3 className="mt-2 text-2xl font-semibold leading-tight">{post.title}</h3>
+                    <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'A supporting story with quieter pacing and clearer reading hierarchy.'}</p>
+                  </Link>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className={`rounded-[2.2rem] p-7 ${tone.soft}`}>
+            <p className="issue-kicker">From the desk</p>
+            <h2 className={`mt-4 text-3xl font-semibold tracking-[-0.05em] ${tone.title}`}>
+              Sandlore favors atmosphere, composition, and reading comfort over feed-first speed.
+            </h2>
+            <p className={`mt-5 text-sm leading-8 ${tone.muted}`}>
+              The homepage foregrounds the archive’s lead story, while search and supporting routes remain available without taking over the publication voice.
+            </p>
+            <div className="mt-7 space-y-3">
+              {[
+                'Article-first navigation with quieter utilities.',
+                'Large issue headings and paper-toned surfaces.',
+                'Distinct list and detail layouts for supporting task pages.',
+              ].map((item) => (
+                <div key={item} className={`rounded-[1.5rem] px-4 py-3 ${tone.panel}`}>
+                  <p className="text-sm font-medium">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {archive.map((post, index) => (
+              <Link key={post.id} href={`/articles/${post.slug}`} className={`group overflow-hidden rounded-[2rem] ${index === 0 ? `${tone.panel} md:col-span-2` : tone.soft}`}>
+                <div className="relative h-56 overflow-hidden md:h-64">
+                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                </div>
+                <div className="p-5">
+                  <p className={`text-[11px] font-semibold uppercase tracking-[0.26em] ${tone.muted}`}>Archive feature</p>
+                  <h3 className="mt-3 text-2xl font-semibold leading-tight">{post.title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${tone.muted}`}>{post.summary || 'A quieter article block pulled forward from the broader archive.'}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-18">
+        <div className="issue-rule flex items-end justify-between gap-4 border-b pb-6">
+          <div>
+            <p className="issue-kicker">Latest dispatches</p>
+            <h2 className={`mt-3 text-3xl font-semibold tracking-[-0.05em] ${tone.title}`}>
+              More from the archive
+            </h2>
+          </div>
+          <Link href={primaryTask?.route || '/articles'} className="text-sm font-semibold text-primary hover:opacity-80">Browse all articles</Link>
+        </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {(closing.length ? closing : articlePosts.slice(0, 3)).map((post) => (
+            <TaskPostCard key={post.id} post={post} href={`/articles/${post.slug}`} taskKey="article" />
           ))}
         </div>
+
+        {supportTasks.length ? (
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {supportTasks.slice(0, 3).map((task) => (
+              <Link key={task.key} href={task.route} className={`rounded-[1.8rem] p-6 ${tone.soft}`}>
+                <h3 className="text-xl font-semibold">{task.label}</h3>
+                <p className={`mt-3 text-sm leading-7 ${tone.muted}`}>{task.description}</p>
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </section>
     </main>
   )
