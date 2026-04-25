@@ -2,14 +2,21 @@ import type { SiteRecipe } from '@/design/factory/recipe-types'
 
 export const SITE_RECIPE: SiteRecipe = {
   productFamily: 'editorial',
-  themePack: 'medium-journal',
+  themePack: 'magazine-contrast',
   homepageTemplate: 'article-home',
   navbarTemplate: 'editorial-bar',
   footerTemplate: 'editorial-footer',
   motionPack: 'editorial-soft',
   primaryTask: 'article',
   enabledTasks: ['article'],
-  taskTemplates: { article: 'article-editorial' },
+  taskTemplates: {
+    article: 'article-journal',
+    listing: 'listing-showcase',
+    classified: 'classified-bulletin',
+    image: 'image-portfolio',
+    profile: 'profile-creator',
+    sbm: 'sbm-library',
+  },
   manualOverrides: {
     navbar: false,
     footer: false,

@@ -226,6 +226,23 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   const schemaPayload = articleSchema ? [articleSchema, breadcrumbSchema] : breadcrumbSchema;
   const { recipe } = getFactoryState();
   const productKind = getProductKind(recipe);
+  const isVisualTask = task === "image";
+  const isDocumentTask = task === "pdf";
+  const isProfileTask = task === "profile" || task === "org";
+  const detailSurface = isArticle
+    ? "bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]"
+    : isVisualTask
+      ? "bg-[linear-gradient(180deg,#08101d_0%,#0f1a2d_100%)] text-white"
+      : isDocumentTask
+        ? "bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]"
+        : isProfileTask
+          ? "bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]"
+          : "bg-background";
+  const detailPanel = isVisualTask
+    ? "border border-white/10 bg-white/6"
+    : "border border-[#EDDCC6] bg-white/90";
+  const detailMuted = isVisualTask ? "text-slate-300" : "text-[#7EACB5]";
+  const detailTitle = isVisualTask ? "text-white" : "text-[#BF4646]";
 
   if (productKind === "directory" && (task === "listing" || task === "classified" || task === "profile")) {
     return (
@@ -248,13 +265,13 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={cn("min-h-screen", detailSurface)}>
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
         <Link
           href={taskConfig?.route || "/"}
-          className="mb-6 inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+          className={cn("mb-6 inline-flex items-center text-sm hover:text-foreground", detailMuted)}
         >
           ← Back to {taskConfig?.label || "posts"}
         </Link>
@@ -268,31 +285,34 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
               <div className="mx-auto w-full max-w-4xl space-y-6">
-                <h1 className="text-4xl font-semibold leading-tight text-foreground">
-                  {post.title}
-                </h1>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                  <span>By {articleAuthor}</span>
-                  {articleDate ? <span>{articleDate}</span> : null}
-                  <Badge variant="secondary" className="inline-flex items-center gap-1">
-                    <Tag className="h-3.5 w-3.5" />
-                    {category}
-                  </Badge>
-                </div>
-                {postTags.length ? (
-                  <div className="flex flex-wrap gap-2">
-                    {postTags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
+                <div className="rounded-[2.2rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-7 shadow-[0_22px_60px_rgba(126,172,181,0.14)] sm:p-8">
+                  <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Feature story</p>
+                  <h1 className="mt-4 text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-[#BF4646] sm:text-5xl">
+                    {post.title}
+                  </h1>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#7EACB5]">
+                    <span>By {articleAuthor}</span>
+                    {articleDate ? <span>{articleDate}</span> : null}
+                    <Badge variant="secondary" className="inline-flex items-center gap-1 border border-[#EDDCC6] bg-white text-[#BF4646]">
+                      <Tag className="h-3.5 w-3.5" />
+                      {category}
+                    </Badge>
                   </div>
-                ) : null}
-                {articleSummary ? (
-                  <p className="text-base leading-7 text-muted-foreground">{articleSummary}</p>
-                ) : null}
+                  {postTags.length ? (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {postTags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="border-[#EDDCC6] text-[#7EACB5]">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  ) : null}
+                  {articleSummary ? (
+                    <p className="mt-5 max-w-3xl text-base leading-8 text-[#7EACB5]">{articleSummary}</p>
+                  ) : null}
+                </div>
                 {images[0] ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-muted">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.4rem] border border-[#EDDCC6] bg-[#FFF4EA] shadow-[0_22px_60px_rgba(126,172,181,0.14)]">
                     <ContentImage
                       src={images[0]}
                       alt={`${post.title} featured image`}
@@ -303,7 +323,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                     />
                   </div>
                 ) : null}
-                <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
+                <div className="rounded-[2rem] border border-[#EDDCC6] bg-white/92 p-6 shadow-[0_18px_50px_rgba(126,172,181,0.12)] sm:p-8">
+                  <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
+                </div>
                 <ArticleComments slug={post.slug} />
               </div>
             ) : null}
@@ -311,14 +333,15 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             {!isArticle ? (
               <>
                 {!isBookmark ? (
-                  <div className={cn(isClassified ? "w-full" : "")}>
+                  <div className={cn(isClassified ? "w-full" : "", isVisualTask ? "rounded-[2rem] border border-white/10 bg-white/5 p-3" : "")}>
                     <TaskImageCarousel images={images} />
                   </div>
                 ) : null}
 
                 <div className={cn(isClassified ? "mx-auto w-full max-w-4xl" : "mt-6")}>
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                    <Badge variant="secondary" className="inline-flex items-center gap-1">
+                  <div className={cn("rounded-[2rem] p-6 sm:p-7", detailPanel)}>
+                    <div className={cn("flex flex-wrap items-center gap-3 text-sm", detailMuted)}>
+                      <Badge variant="secondary" className={cn("inline-flex items-center gap-1", isVisualTask ? "border border-white/10 bg-white/10 text-white" : "border border-[#EDDCC6] bg-white text-[#BF4646]")}>
                       <Tag className="h-3.5 w-3.5" />
                       {category}
                     </Badge>
@@ -328,23 +351,24 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                         {location}
                       </span>
                     )}
+                    </div>
+                    <h1 className={cn("mt-4 text-3xl font-semibold tracking-[-0.05em]", detailTitle)}>{post.title}</h1>
+                    <RichContent html={descriptionHtml} className={cn("mt-3 max-w-3xl", isVisualTask ? "[&_p]:text-slate-300 [&_a]:text-white" : "")} />
                   </div>
-                  <h1 className="mt-4 text-3xl font-semibold text-foreground">{post.title}</h1>
-                  <RichContent html={descriptionHtml} className="mt-3 max-w-3xl" />
                 </div>
               </>
             ) : null}
 
             {isClassified ? (
-              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-6">
-                <h2 className="text-lg font-semibold text-foreground">Business details</h2>
-                <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <div className="mx-auto w-full max-w-4xl rounded-[2rem] border border-[#EDDCC6] bg-white/92 p-6">
+                <h2 className="text-lg font-semibold text-[#BF4646]">Business details</h2>
+                <div className="mt-4 space-y-3 text-sm text-[#7EACB5]">
                   {content.website && (
                     <div className="flex items-start gap-2">
                       <Globe className="mt-0.5 h-4 w-4" />
                       <a
                         href={content.website}
-                        className="break-all text-foreground hover:underline"
+                        className="break-all text-[#BF4646] hover:underline"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -363,7 +387,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                       <Mail className="mt-0.5 h-4 w-4" />
                       <a
                         href={`mailto:${content.email}`}
-                        className="break-all text-foreground hover:underline"
+                        className="break-all text-[#BF4646] hover:underline"
                       >
                         {content.email}
                       </a>
@@ -380,9 +404,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             ) : null}
 
             {content.highlights?.length && !isArticle ? (
-              <div className={cn("mt-8 rounded-2xl border border-border bg-card p-6", isClassified ? "mx-auto w-full max-w-4xl" : "")}>
-                <h2 className="text-lg font-semibold text-foreground">Highlights</h2>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <div className={cn("mt-8 rounded-[2rem] p-6", detailPanel, isClassified ? "mx-auto w-full max-w-4xl" : "")}>
+                <h2 className={cn("text-lg font-semibold", detailTitle)}>Highlights</h2>
+                <ul className={cn("mt-4 space-y-2 text-sm", detailMuted)}>
                   {content.highlights.map((item) => (
                     <li key={item}>• {item}</li>
                   ))}
@@ -391,9 +415,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             ) : null}
 
             {isClassified && mapEmbedUrl ? (
-              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-4">
-                <p className="text-sm font-semibold text-foreground">Location map</p>
-                <div className="mt-4 overflow-hidden rounded-xl border border-border">
+              <div className="mx-auto w-full max-w-4xl rounded-[2rem] border border-[#EDDCC6] bg-white/92 p-4">
+                <p className="text-sm font-semibold text-[#BF4646]">Location map</p>
+                <div className="mt-4 overflow-hidden rounded-xl border border-[#EDDCC6]">
                   <iframe
                     title="Business location map"
                     src={mapEmbedUrl}
@@ -408,15 +432,15 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
           {!hideSidebar ? (
             <aside className="space-y-6">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="text-lg font-semibold text-foreground">Listing details</h2>
-                <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <div className={cn("rounded-[2rem] p-6", detailPanel)}>
+              <h2 className={cn("text-lg font-semibold", detailTitle)}>Listing details</h2>
+                <div className={cn("mt-4 space-y-3 text-sm", detailMuted)}>
                   {content.website && (
                     <div className="flex items-start gap-2">
                       <Globe className="mt-0.5 h-4 w-4" />
                       <a
                         href={content.website}
-                        className="break-all text-foreground hover:underline"
+                        className={cn("break-all hover:underline", isVisualTask ? "text-white" : "text-[#2f1d16]")}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -435,7 +459,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                       <Mail className="mt-0.5 h-4 w-4" />
                       <a
                         href={`mailto:${content.email}`}
-                        className="break-all text-foreground hover:underline"
+                        className={cn("break-all hover:underline", isVisualTask ? "text-white" : "text-[#2f1d16]")}
                       >
                         {content.email}
                       </a>
@@ -449,7 +473,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   )}
                 </div>
               {content.website ? (
-                <Button className="mt-5 w-full" asChild>
+                <Button className={cn("mt-5 w-full", isVisualTask ? "bg-white text-[#07111f] hover:bg-slate-200" : "")} asChild>
                   <a href={content.website} target="_blank" rel="noreferrer">
                     Visit Website
                   </a>
@@ -458,9 +482,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             </div>
 
             {mapEmbedUrl ? (
-              <div className="rounded-2xl border border-border bg-card p-4">
-                <p className="text-sm font-semibold text-foreground">Location map</p>
-                <div className="mt-4 overflow-hidden rounded-xl border border-border">
+              <div className={cn("rounded-[2rem] p-4", detailPanel)}>
+                <p className={cn("text-sm font-semibold", detailTitle)}>Location map</p>
+                <div className={cn("mt-4 overflow-hidden rounded-xl", isVisualTask ? "border border-white/10" : "border border-[#dacfbf]")}>
                   <iframe
                     title="Business location map"
                     src={mapEmbedUrl}
@@ -479,13 +503,13 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           {related.length ? (
             <>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-foreground">
+              <h2 className={cn("text-xl font-semibold", detailTitle)}>
                 More in {category}
               </h2>
               {taskConfig?.route && (
                 <Link
                   href={taskConfig.route}
-                  className="text-sm text-muted-foreground hover:text-foreground"
+                  className={cn("text-sm hover:text-foreground", detailMuted)}
                 >
                   View all
                 </Link>
@@ -502,14 +526,14 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             </div>
             </>
           ) : null}
-          <nav className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
-            <p className="text-sm font-semibold text-foreground">Related links</p>
+          <nav className={cn("mt-6 rounded-[2rem] p-4", detailPanel)}>
+            <p className={cn("text-sm font-semibold", detailTitle)}>Related links</p>
             <ul className="mt-2 space-y-2 text-sm">
               {related.map((item) => (
                 <li key={`link-${item.id}`}>
                   <Link
                     href={buildPostUrl(task, item.slug)}
-                    className="text-primary underline-offset-4 hover:underline"
+                    className={cn("underline-offset-4 hover:underline", isVisualTask ? "text-white" : "text-primary")}
                   >
                     {item.title}
                   </Link>
@@ -519,7 +543,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 <li>
                   <Link
                     href={taskConfig.route}
-                    className="text-primary underline-offset-4 hover:underline"
+                    className={cn("underline-offset-4 hover:underline", isVisualTask ? "text-white" : "text-primary")}
                   >
                     Browse all {taskConfig.label}
                   </Link>
@@ -528,7 +552,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
               <li>
                 <Link
                   href={`/search?q=${encodeURIComponent(category)}`}
-                  className="text-primary underline-offset-4 hover:underline"
+                  className={cn("underline-offset-4 hover:underline", isVisualTask ? "text-white" : "text-primary")}
                 >
                   Search more in {category}
                 </Link>

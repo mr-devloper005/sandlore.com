@@ -76,7 +76,7 @@ export default async function SearchPage({
       description={
         query
           ? `Results for "${query}"`
-          : "Browse the latest posts across every task."
+          : "Search essays, archive notes, and supporting routes across the entire site."
       }
       actions={
         <form action="/search" className="flex w-full gap-2 sm:w-auto">
@@ -84,20 +84,31 @@ export default async function SearchPage({
           {category ? <input type="hidden" name="category" value={category} /> : null}
           {task ? <input type="hidden" name="task" value={task} /> : null}
           <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7EACB5]" />
             <Input
               name="q"
               defaultValue={query}
-              placeholder="Search across tasks..."
-              className="h-11 pl-9"
+              placeholder="Search the archive..."
+              className="h-11 rounded-full border-[#EDDCC6] bg-white pl-9 text-[#BF4646] shadow-none"
             />
           </div>
-          <Button type="submit" className="h-11">
+          <Button type="submit" className="h-11 rounded-full bg-[#BF4646] px-5 text-[#FFF4EA] hover:bg-[#ab3e3e]">
             Search
           </Button>
         </form>
       }
     >
+      <div className="mb-8 flex flex-wrap gap-3">
+        {[
+          query ? `Query: ${query}` : 'Showing recent archive results',
+          category ? `Category: ${category}` : 'All categories',
+          task ? `Task: ${task}` : 'All tasks',
+        ].map((item) => (
+          <span key={item} className="rounded-full border border-[#EDDCC6] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#7EACB5]">
+            {item}
+          </span>
+        ))}
+      </div>
       {results.length ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((post) => {
@@ -107,7 +118,7 @@ export default async function SearchPage({
           })}
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
+        <div className="rounded-[2rem] border border-dashed border-[#EDDCC6] bg-[#FFF4EA] p-10 text-center text-[#7EACB5]">
           No matching posts yet.
         </div>
       )}
