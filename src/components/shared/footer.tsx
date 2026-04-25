@@ -30,6 +30,7 @@ const footerLinks = {
     { name: 'Careers', href: '/careers' },
     { name: 'Blog', href: '/blog' },
     { name: 'Press', href: '/press' },
+    { name: 'Contact', href: '/contact' },
   ],
   resources: [
     { name: 'Help Center', href: '/help' },
@@ -87,8 +88,8 @@ export function Footer() {
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr_1fr]">
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-7">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-white/8 p-1.5">
-                  <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="48" height="48" className="h-full w-full object-contain" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/12 bg-white/8 p-1.5">
+                  <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="56" height="56" className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <p className="text-lg font-semibold">{SITE_CONFIG.name}</p>
@@ -140,33 +141,48 @@ export function Footer() {
 
   if (recipe.footer === 'editorial-footer') {
     return (
-      <footer className="border-t border-[#dbc6b6] bg-[linear-gradient(180deg,#fff9f0_0%,#fff1df_100%)] text-[#2f1d16]">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#dbc6b6] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#72594a]">
+      <footer className="border-t border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] text-[#BF4646]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.85fr_0.85fr]">
+            <div className="magazine-frame rounded-[2rem] p-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#EDDCC6] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7EACB5]">
                 <Sparkles className="h-3.5 w-3.5" />
-                Editorial desk
+                From the desk
               </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
+              <h3 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{SITE_CONFIG.name}</h3>
+              <p className="mt-4 max-w-md text-sm leading-7 text-[#7EACB5]">{SITE_CONFIG.description}</p>
+              <div className="mt-7 issue-rule pt-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#7EACB5]">Reading paths</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href="/articles" className="rounded-full bg-[#BF4646] px-4 py-2 text-sm font-semibold text-[#FFF4EA] hover:bg-[#ab3e3e]">Open archive</Link>
+                  <Link href="/search" className="rounded-full border border-[#EDDCC6] px-4 py-2 text-sm font-semibold text-[#7EACB5] hover:bg-[#FFF4EA]">Search archive</Link>
+                  <Link href="/contact" className="rounded-full border border-[#EDDCC6] px-4 py-2 text-sm font-semibold text-[#7EACB5] hover:bg-[#FFF4EA]">Contact the desk</Link>
+                </div>
+              </div>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Sections</h4>
-              <ul className="mt-4 space-y-3 text-sm">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7EACB5]">Sections</h4>
+              <ul className="mt-5 space-y-3 text-sm">
                 {footerLinks.platform.map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
+                  <li key={item.name}><Link href={item.href} className="hover:text-[#7EACB5]">{item.name}</Link></li>
                 ))}
+                <li><Link href="/search" className="hover:text-[#7EACB5]">Search</Link></li>
+                <li><Link href="/contact" className="hover:text-[#7EACB5]">Contact
+                
+                </Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Company</h4>
-              <ul className="mt-4 space-y-3 text-sm">
-                {footerLinks.company.map((item) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7EACB5]">Further Reading</h4>
+              <ul className="mt-5 space-y-3 text-sm">
+                {[...footerLinks.company.slice(0, 3), ...footerLinks.legal.slice(0, 2)].map((item) => (
+                  <li key={item.name}><Link href={item.href} className="hover:text-[#7EACB5]">{item.name}</Link></li>
                 ))}
               </ul>
             </div>
+          </div>
+          <div className="mt-10 issue-rule pt-5 text-xs uppercase tracking-[0.24em] text-[#7EACB5]">
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. {siteContent.footer.tagline}
           </div>
         </div>
       </footer>
@@ -179,8 +195,8 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-11 w-11 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
-                <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="44" height="44" className="h-full w-full object-contain" />
+              <div className="h-12 w-12 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+                <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="48" height="48" className="h-full w-full object-contain" />
               </div>
               <div>
                 <span className="block text-lg font-semibold">{SITE_CONFIG.name}</span>

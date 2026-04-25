@@ -24,18 +24,19 @@ export default function PressPage() {
   return (
     <PageShell
       title="Press"
-      description="Media resources, brand assets, and press coverage."
+      description="Media resources, brand assets, and story context for coverage of the Sandlore publication."
     >
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <Card className="border-border bg-card">
-          <CardContent className="p-6 space-y-3">
-            <h2 className="text-lg font-semibold text-foreground">Press Kit</h2>
+        <Card className="magazine-frame rounded-[2.2rem] border-border bg-card">
+          <CardContent className="space-y-4 p-6 sm:p-8">
+            <p className="issue-kicker">Press kit</p>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">Brand material and editorial context for coverage.</h2>
             <p className="text-sm text-muted-foreground">
-              Download logos, product screenshots, and brand guidelines for media use.
+              Download logos, publication visuals, and reference material that reflects the current visual system of the site.
             </p>
             <div className="grid gap-2">
               {mockPressAssets.map((asset) => (
-                <div key={asset.id} className="rounded-lg border border-border bg-secondary/40 px-4 py-3">
+                <div key={asset.id} className="rounded-[1.5rem] border border-border bg-secondary/35 px-4 py-3">
                   <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <div>
                       <p className="text-sm font-medium text-foreground">{asset.title}</p>
@@ -65,8 +66,17 @@ export default function PressPage() {
           </CardContent>
         </Card>
         <div className="space-y-4">
+          <Card className="rounded-[1.8rem] border-border bg-card">
+            <CardContent className="p-6">
+              <p className="issue-kicker">Coverage note</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-foreground">Sandlore is best described as a quiet editorial product, not a generic content platform.</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                When covering the brand, emphasize the reading-first archive, issue-like layout, and softer print-inspired visual language.
+              </p>
+            </CardContent>
+          </Card>
           {mockPressCoverage.map((item) => (
-            <Card key={item.id} className="border-border bg-card transition-transform hover:-translate-y-1">
+            <Card key={item.id} className="rounded-[1.8rem] border-border bg-card transition-transform hover:-translate-y-1">
               <CardContent className="p-6">
                 <div className="text-xs uppercase tracking-wide text-muted-foreground">{item.outlet}</div>
                 <p className="mt-2 text-sm text-foreground">{item.headline}</p>

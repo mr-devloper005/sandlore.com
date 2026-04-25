@@ -1,56 +1,79 @@
 import Link from "next/link";
+import { BookOpen, Compass, Layers3, PencilLine } from "lucide-react";
 import { PageShell } from "@/components/shared/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { mockTeamMembers } from "@/data/mock-data";
 import { SITE_CONFIG } from "@/lib/site-config";
 
 const highlights = [
-  { label: "Creators onboarded", value: "12k+" },
-  { label: "Bookmarks shared", value: "180k" },
-  { label: "Listings published", value: "8.6k" },
+  { label: "Feature essays", value: "124" },
+  { label: "Reading notes", value: "38" },
+  { label: "Archive themes", value: "12" },
 ];
 
 const values = [
-  { title: "Curated by people", description: "We believe trusted recommendations beat endless feeds." },
-  { title: "Designed for focus", description: "Clear, calm UI helps you find the next best resource fast." },
-  { title: "Built to share", description: "Collections make collaboration and knowledge flow effortless." },
+  { title: "Editorial pace", description: "Every page is arranged to feel like part of a publication, not a dashboard." },
+  { title: "Visual restraint", description: "Typography, spacing, and imagery do more of the work than loud UI chrome." },
+  { title: "Connected archive", description: "Stories, supporting routes, and utilities stay linked without breaking the publication tone." },
+];
+
+const pillars = [
+  {
+    icon: PencilLine,
+    title: "Long-form first",
+    body: "Sandlore is designed around essays, interviews, dispatches, and slower reading rather than short-lived feed mechanics.",
+  },
+  {
+    icon: Layers3,
+    title: "Issue-like structure",
+    body: "Lead stories, archive entries, support pages, and search all share the same visual language while keeping distinct rhythms.",
+  },
+  {
+    icon: Compass,
+    title: "Calm discovery",
+    body: "Navigation and internal pages help readers move deeper into the archive without collapsing everything into one repeated template.",
+  },
+  {
+    icon: BookOpen,
+    title: "Useful depth",
+    body: "Behind the visual polish, the full task system remains intact and accessible whenever the reader needs it.",
+  },
 ];
 
 export default function AboutPage() {
   return (
     <PageShell
       title={`About ${SITE_CONFIG.name}`}
-      description={`${SITE_CONFIG.name} is a modern platform for creators, communities, and curated business discovery.`}
+      description={`${SITE_CONFIG.name} is a reading-first editorial product shaped for essays, visual notes, and a slower archive experience.`}
       actions={
         <>
-          <Button variant="outline" asChild>
-            <Link href="/team">Meet the Team</Link>
+          <Button variant="outline" asChild className="rounded-full">
+            <Link href="/articles">Read the Archive</Link>
           </Button>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
+          <Button asChild className="rounded-full bg-[#BF4646] text-[#FFF4EA] hover:bg-[#aa3c3c]">
+            <Link href="/contact">Contact the Desk</Link>
           </Button>
         </>
       }
     >
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <Card className="border-border bg-card">
-          <CardContent className="space-y-4 p-6">
-            <Badge variant="secondary">Our Story</Badge>
-            <h2 className="text-2xl font-semibold text-foreground">
-              A single home for knowledge, discovery, and community.
+      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <Card className="magazine-frame overflow-hidden rounded-[2.4rem] border-border">
+          <CardContent className="space-y-5 p-8">
+            <p className="issue-kicker">Our editorial point of view</p>
+            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-foreground">
+              A publication surface designed to feel deliberate, tactile, and easy to stay inside.
             </h2>
-            <p className="text-sm text-muted-foreground">
-              {SITE_CONFIG.name} brings together publishing, listings, and social bookmarking so teams can move faster
-              and keep their best resources close.
+            <p className="soft-caption max-w-3xl text-sm leading-8">
+              {SITE_CONFIG.name} treats the homepage, archive, search, and supporting pages as parts of one reading system.
+              The result is a quieter product where branding, layout rhythm, and storytelling matter as much as utility.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {highlights.map((item) => (
-                <div key={item.label} className="rounded-lg border border-border bg-secondary/40 p-4">
-                  <div className="text-2xl font-semibold text-foreground">{item.value}</div>
-                  <div className="text-xs text-muted-foreground">{item.label}</div>
+                <div key={item.label} className="rounded-[1.6rem] border border-border bg-white/80 p-4">
+                  <div className="text-3xl font-semibold text-foreground">{item.value}</div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -58,7 +81,7 @@ export default function AboutPage() {
         </Card>
         <div className="space-y-4">
           {values.map((value) => (
-            <Card key={value.title} className="border-border bg-card">
+            <Card key={value.title} className="rounded-[1.8rem] border-border bg-card/90">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
@@ -68,9 +91,28 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {pillars.map((pillar) => (
+          <Card key={pillar.title} className="rounded-[1.8rem] border-border bg-secondary/35">
+            <CardContent className="p-6">
+              <pillar.icon className="h-5 w-5 text-[#BF4646]" />
+              <h3 className="mt-4 text-lg font-semibold text-foreground">{pillar.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="mt-10">
+        <div className="mb-5">
+          <p className="issue-kicker">The people behind the archive</p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-foreground">A small editorial team with a strong point of view.</h2>
+        </div>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-3">
         {mockTeamMembers.map((member) => (
-          <Card key={member.id} className="border-border bg-card transition-transform hover:-translate-y-1">
+          <Card key={member.id} className="rounded-[1.9rem] border-border bg-card transition-transform hover:-translate-y-1">
             <CardContent className="p-6">
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">

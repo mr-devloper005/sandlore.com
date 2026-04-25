@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'oed3htonlc',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Sandlore',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Article platform',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Quiet editorial journal',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'An article-led publishing platform for insights, stories, guides, and long-form discovery.',
+    'A quiet editorial journal for essays, field notes, interviews, and image-led features shaped for slower reading.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'sandlore.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://sandlore.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',
