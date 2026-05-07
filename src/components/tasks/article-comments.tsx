@@ -310,9 +310,6 @@ export function ArticleComments({ slug }: { slug: string }) {
                     <p className="text-sm font-semibold text-foreground">{comment.authorName}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(comment.createdAt).toLocaleDateString()}
-                    </p>
                     {comment.source === "local" ? (
                       <button
                         type="button"

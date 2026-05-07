@@ -15,8 +15,7 @@ export default function PrivacyPage() {
     >
       <Card className="magazine-frame rounded-[2.2rem] border-border bg-card">
         <CardContent className="p-6 space-y-4 sm:p-8">
-          <p className="text-xs text-muted-foreground">Last updated: March 16, 2026</p>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">A plain-language summary of how this editorial product handles personal data.</h2>
+                    <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">A plain-language summary of how this editorial product handles personal data.</h2>
           {sections.map((section) => (
             <div key={section.title} className="rounded-[1.5rem] border border-border bg-secondary/40 p-4">
               <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
