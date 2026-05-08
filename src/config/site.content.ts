@@ -2,7 +2,7 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Issue notes, essays, and slower reading',
+    tagline: '',
   },
   footer: {
     tagline: 'A slower journal of stories and image-led notes',

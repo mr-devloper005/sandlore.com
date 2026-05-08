@@ -154,9 +154,6 @@ function CommentItem({ comment, isReply = false }: { comment: Comment; isReply?:
             {comment.author.isVerified && (
               <Badge variant="secondary" className="text-xs">Verified</Badge>
             )}
-            <span className="text-sm text-muted-foreground" suppressHydrationWarning>
-              {mounted ? formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true }) : 'Just now'}
-            </span>
           </div>
           <p className="text-muted-foreground leading-relaxed">{comment.content}</p>
         </div>
