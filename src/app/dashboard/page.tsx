@@ -220,19 +220,36 @@ export default function DashboardPage() {
         status: article.status ?? "published",
         views: article.views ?? 0,
         likes: article.likes ?? 0,
+        date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
       })),
       listings: userListings.map((listing) => ({
         id: listing.id,
         title: listing.title,
         status: listing.status,
+        views: listing.views ?? 0,
         inquiries: 0,
+        date: new Date(listing.createdAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
       })),
       ads: userAds.map((ad) => ({
         id: ad.id,
         title: ad.title,
         status: ad.status,
+        views: ad.views ?? 0,
         messages: 0,
         price: `$${ad.price.toLocaleString()}`,
+        date: new Date(ad.createdAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
       })),
     }),
     [userAds, userArticles, userListings]

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
 import type { User } from '@/types'
+import { currentUser } from '@/data/mock-data'
 import { loadFromStorage, saveToStorage, storageKeys } from '@/lib/local-storage'
 
 interface AuthContextType {
@@ -28,8 +29,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const buildUser = useCallback((overrides: Partial<User>) => {
+    const joinedDate = new Date().toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+    })
     return {
+      ...currentUser,
       id: `user-${Date.now()}`,
+      joinedDate,
       followers: 0,
       following: 0,
       isVerified: false,
@@ -49,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         ? storedUser
         : buildUser({
             email,
-            name: email.split('@')[0]?.replace(/[^a-zA-Z0-9]/g, '') || 'User',
+            name: email.split('@')[0]?.replace(/[^a-zA-Z0-9]/g, '') || currentUser.name,
           })
       setUser(nextUser)
       saveToStorage(storageKeys.user, nextUser)

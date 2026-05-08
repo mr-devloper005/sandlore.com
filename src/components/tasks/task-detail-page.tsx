@@ -155,7 +155,14 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
     (typeof content.author === "string" && content.author.trim()) ||
     post.authorName ||
     "Editorial Team";
-    const postTags = Array.isArray(post.tags) ? post.tags.filter((tag) => typeof tag === "string") : [];
+  const articleDate = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
+  const postTags = Array.isArray(post.tags) ? post.tags.filter((tag) => typeof tag === "string") : [];
   const location = content.address || content.location;
   const images = getImageUrls(post, content);
   const mapEmbedUrl = buildMapEmbedUrl(content.latitude, content.longitude, location);
@@ -277,102 +284,47 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         >
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
-              <div className="mx-auto w-full max-w-5xl space-y-8">
-                {/* Hero Section with Enhanced Design */}
-                <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#FFF4EA] via-[#FEF7F0] to-[#EDDCC6] shadow-[0_32px_80px_rgba(126,172,181,0.18)]">
-                  {/* Decorative Elements */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#BF4646]/5 via-transparent to-[#7EACB5]/5" />
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#BF4646]/10 to-transparent rounded-full blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#7EACB5]/10 to-transparent rounded-full blur-2xl" />
-                  
-                  <div className="relative p-8 sm:p-12 lg:p-16">
-                    <div className="flex flex-wrap items-center gap-3 mb-6">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-[#BF4646]/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] text-[#BF4646] border border-[#BF4646]/20">
-                        <span className="w-2 h-2 bg-[#BF4646] rounded-full animate-pulse" />
-                        Feature Story
-                      </span>
-                      <Badge className="rounded-full bg-white/90 backdrop-blur-sm border border-[#EDDCC6]/50 text-[#7EACB5] px-4 py-2 text-xs font-semibold">
-                        {category}
-                      </Badge>
-                    </div>
-                    
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.02] tracking-[-0.08em] text-[#BF4646] mb-6">
-                      {post.title}
-                    </h1>
-                    
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-[#7EACB5] mb-6">
-                      <span className="font-medium">By {articleAuthor}</span>
-                      <span className="w-1 h-1 rounded-full bg-[#7EACB5]/40" />
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/60 backdrop-blur-sm">
-                        <span className="w-1.5 h-1.5 bg-[#7EACB5] rounded-full" />
-                        Editorial
-                      </span>
-                    </div>
-                    
-                    {postTags.length ? (
-                      <div className="flex flex-wrap gap-2">
-                        {postTags.slice(0, 4).map((tag) => (
-                          <Badge key={tag} variant="outline" className="rounded-full border-[#EDDCC6]/60 bg-white/80 text-[#7EACB5] px-3 py-1 text-xs font-medium">
-                            #{tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    ) : null}
+              <div className="mx-auto w-full max-w-4xl space-y-6">
+                <div className="rounded-[2.2rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-7 shadow-[0_22px_60px_rgba(126,172,181,0.14)] sm:p-8">
+                  <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Feature story</p>
+                  <h1 className="mt-4 text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-[#BF4646] sm:text-5xl">
+                    {post.title}
+                  </h1>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#7EACB5]">
+                    <span>By {articleAuthor}</span>
+                    {articleDate ? <span>{articleDate}</span> : null}
+                    <Badge variant="secondary" className="inline-flex items-center gap-1 border border-[#EDDCC6] bg-white text-[#BF4646]">
+                      <Tag className="h-3.5 w-3.5" />
+                      {category}
+                    </Badge>
                   </div>
+                  {postTags.length ? (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {postTags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="border-[#EDDCC6] text-[#7EACB5]">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  ) : null}
+                  {articleSummary ? (
+                    <p className="mt-5 max-w-3xl text-base leading-8 text-[#7EACB5]">{articleSummary}</p>
+                  ) : null}
                 </div>
-                
-                {/* Summary Section */}
-                {articleSummary && (
-                  <div className="relative rounded-[2rem] bg-gradient-to-br from-white to-[#FFF4EA] p-8 shadow-[0_16px_48px_rgba(126,172,181,0.12)] border border-[#EDDCC6]/30">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#7EACB5]/8 to-transparent rounded-full blur-xl" />
-                    <p className="relative text-lg leading-8 text-[#7EACB5] font-medium max-w-4xl">
-                      {articleSummary}
-                    </p>
-                  </div>
-                )}
                 {images[0] ? (
-                  <div className="group relative aspect-[21/9] w-full overflow-hidden rounded-[3rem] border border-[#EDDCC6]/50 bg-gradient-to-br from-[#FFF4EA] to-[#EDDCC6] shadow-[0_32px_80px_rgba(126,172,181,0.25)]">
-                    {/* Image overlay effects */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#BF4646]/10 via-transparent to-[#7EACB5]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.4rem] border border-[#EDDCC6] bg-[#FFF4EA] shadow-[0_22px_60px_rgba(126,172,181,0.14)]">
                     <ContentImage
                       src={images[0]}
                       alt={`${post.title} featured image`}
                       fill
-                      className="object-cover transition-all duration-1000 group-hover:scale-[1.03]"
+                      className="object-cover"
                       intrinsicWidth={1600}
                       intrinsicHeight={900}
                     />
-                    
-                    {/* Floating caption */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-4 py-2 text-xs font-semibold text-[#BF4646] shadow-lg border border-[#EDDCC6]/50">
-                        <span className="w-2 h-2 bg-[#BF4646] rounded-full animate-pulse" />
-                        Featured Image
-                      </div>
-                    </div>
                   </div>
                 ) : null}
-                
-                {/* Enhanced Content Section */}
-                <div className="relative rounded-[3rem] bg-gradient-to-br from-white via-[#FFFEFA] to-[#FFF4EA] p-8 sm:p-12 shadow-[0_24px_64px_rgba(126,172,181,0.16)] border border-[#EDDCC6]/40">
-                  {/* Decorative corner elements */}
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#BF4646]/8 to-transparent rounded-full blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#7EACB5]/8 to-transparent rounded-full blur-2xl" />
-                  
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="h-px bg-gradient-to-r from-[#EDDCC6] via-[#7EACB5] to-[#EDDCC6] flex-1" />
-                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#7EACB5]">Article Content</span>
-                      <div className="h-px bg-gradient-to-r from-[#EDDCC6] via-[#7EACB5] to-[#EDDCC6] flex-1" />
-                    </div>
-                    
-                    <RichContent 
-                      html={articleHtml} 
-                      className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6 prose-headings:text-[#BF4646] prose-headings:font-bold prose-a:text-[#7EACB5] prose-a:font-medium prose-a:border-b prose-a:border-b-[#7EACB5]/30 prose-strong:text-[#BF4646] prose-blockquote:border-l-[#BF4646] prose-blockquote:bg-[#FFF4EA] prose-blockquote:p-4 prose-blockquote:rounded-lg prose-code:bg-[#EDDCC6] prose-code:text-[#BF4646] prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm [&_*]:transition-colors duration-300" 
-                    />
-                  </div>
+                <div className="rounded-[2rem] border border-[#EDDCC6] bg-white/92 p-6 shadow-[0_18px_50px_rgba(126,172,181,0.12)] sm:p-8">
+                  <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
                 </div>
                 <ArticleComments slug={post.slug} />
               </div>
@@ -386,38 +338,22 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   </div>
                 ) : null}
 
-                <div className={cn(isClassified ? "mx-auto w-full max-w-5xl" : "mt-8")}>
-                  <div className={cn("relative rounded-[3rem] overflow-hidden", isVisualTask ? "bg-white/5 backdrop-blur-sm border border-white/10" : "bg-gradient-to-br from-white via-[#FFFEFA] to-[#FFF4EA] border border-[#EDDCC6]/40")}>
-                    {/* Decorative elements */}
-                    {!isVisualTask && (
-                      <>
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#BF4646]/8 to-transparent rounded-full blur-3xl" />
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#7EACB5]/8 to-transparent rounded-full blur-2xl" />
-                      </>
+                <div className={cn(isClassified ? "mx-auto w-full max-w-4xl" : "mt-6")}>
+                  <div className={cn("rounded-[2rem] p-6 sm:p-7", detailPanel)}>
+                    <div className={cn("flex flex-wrap items-center gap-3 text-sm", detailMuted)}>
+                      <Badge variant="secondary" className={cn("inline-flex items-center gap-1", isVisualTask ? "border border-white/10 bg-white/10 text-white" : "border border-[#EDDCC6] bg-white text-[#BF4646]")}>
+                      <Tag className="h-3.5 w-3.5" />
+                      {category}
+                    </Badge>
+                    {location && (
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        {location}
+                      </span>
                     )}
-                    
-                    <div className="relative p-8 sm:p-12">
-                      <div className={cn("flex flex-wrap items-center gap-3 mb-6", isVisualTask ? "text-white/80" : "text-[#7EACB5]")}>
-                        <Badge className={cn("inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.2em]", isVisualTask ? "bg-white/10 border border-white/20 text-white" : "bg-[#BF4646]/10 border border-[#BF4646]/20 text-[#BF4646]")}>
-                          <span className="w-2 h-2 bg-current rounded-full animate-pulse" />
-                          {category}
-                        </Badge>
-                        {location && (
-                          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur-sm text-sm font-medium">
-                            <MapPin className="h-4 w-4" />
-                            {location}
-                          </span>
-                        )}
-                      </div>
-                      
-                      <h1 className={cn("text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-[-0.06em] mb-6", isVisualTask ? "text-white" : "text-[#BF4646]")}>
-                        {post.title}
-                      </h1>
-                      
-                      <div className={cn("max-w-4xl", isVisualTask ? "[&_p]:text-slate-300 [&_a]:text-white [&_strong]:text-white" : "prose-headings:text-[#BF4646] prose-headings:font-bold prose-a:text-[#7EACB5] prose-a:font-medium prose-strong:text-[#BF4646]")}>
-                        <RichContent html={descriptionHtml} />
-                      </div>
                     </div>
+                    <h1 className={cn("mt-4 text-3xl font-semibold tracking-[-0.05em]", detailTitle)}>{post.title}</h1>
+                    <RichContent html={descriptionHtml} className={cn("mt-3 max-w-3xl", isVisualTask ? "[&_p]:text-slate-300 [&_a]:text-white" : "")} />
                   </div>
                 </div>
               </>

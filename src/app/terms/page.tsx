@@ -19,7 +19,8 @@ export default function TermsPage() {
     >
       <Card className="magazine-frame rounded-[2.2rem] border-border bg-card">
         <CardContent className="space-y-4 p-6 sm:p-8">
-                    <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">Clear expectations for using the archive and its connected publishing surfaces.</h2>
+          <p className="text-xs text-muted-foreground">Last updated: March 16, 2026</p>
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">Clear expectations for using the archive and its connected publishing surfaces.</h2>
           {sections.map((section) => (
             <div key={section.title} className="rounded-[1.5rem] border border-border bg-secondary/40 p-4">
               <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>

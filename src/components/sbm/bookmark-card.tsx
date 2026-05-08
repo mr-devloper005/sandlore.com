@@ -107,7 +107,13 @@ export function BookmarkCard({
                 {bookmark.domain}
               </Badge>
             </div>
-                        <div className="absolute bottom-3 right-3 flex items-center gap-2 text-xs text-white">
+            <div className="absolute bottom-3 left-3 flex items-center gap-2 text-xs text-white">
+              <Clock className="h-3 w-3" />
+              <span suppressHydrationWarning>
+                {mounted ? formatDistanceToNow(new Date(bookmark.createdAt), { addSuffix: true }) : 'Just now'}
+              </span>
+            </div>
+            <div className="absolute bottom-3 right-3 flex items-center gap-2 text-xs text-white">
               <ArrowUpRight className="h-4 w-4" />
               <span>Open</span>
             </div>
