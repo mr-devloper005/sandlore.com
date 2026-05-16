@@ -272,7 +272,7 @@ export function ArticleComments({ slug }: { slug: string }) {
                 limitReached
                   ? "bg-destructive/10 text-destructive"
                   : remainingToday <= 3
-                    ? "bg-amber-100 text-amber-700"
+                    ? "bg-secondary/25 text-secondary-foreground"
                     : "bg-primary/10 text-primary"
               }`}
             >

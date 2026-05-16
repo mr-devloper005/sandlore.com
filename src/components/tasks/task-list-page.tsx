@@ -26,17 +26,17 @@ const taskIcons: Record<TaskKey, any> = {
 
 const variantShells = {
   'listing-directory': 'bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.08),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]',
-  'listing-showcase': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]',
-  'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(191,70,70,0.08),transparent_20%),linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
-  'article-journal': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]',
+  'listing-showcase': 'bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)]',
+  'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(47,160,132,0.08),transparent_20%),linear-gradient(180deg,#EEEEEE_0%,#ffffff_100%)]',
+  'article-journal': 'bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)]',
   'image-masonry': 'bg-[linear-gradient(180deg,#09101d_0%,#111c2f_100%)] text-white',
   'image-portfolio': 'bg-[linear-gradient(180deg,#07111f_0%,#13203a_100%)] text-white',
-  'profile-creator': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
+  'profile-creator': 'bg-[linear-gradient(180deg,#EEEEEE_0%,#ffffff_100%)]',
   'profile-business': 'bg-[linear-gradient(180deg,#f6fbff_0%,#ffffff_100%)]',
-  'classified-bulletin': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
+  'classified-bulletin': 'bg-[linear-gradient(180deg,#EEEEEE_0%,#ffffff_100%)]',
   'classified-market': 'bg-[linear-gradient(180deg,#f4f6ef_0%,#ffffff_100%)]',
   'sbm-curation': 'bg-[linear-gradient(180deg,#fff7ee_0%,#ffffff_100%)]',
-  'sbm-library': 'bg-[linear-gradient(180deg,#FFF4EA_0%,#ffffff_100%)]',
+  'sbm-library': 'bg-[linear-gradient(180deg,#EEEEEE_0%,#ffffff_100%)]',
 } as const
 
 export async function TaskListPage({ task, category }: { task: TaskKey; category?: string }) {
@@ -71,18 +71,18 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
       }
     : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
       ? {
-          muted: 'text-[#7EACB5]',
-          panel: 'border border-[#EDDCC6] bg-white/90',
-          soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
-          input: 'border border-[#EDDCC6] bg-white text-[#BF4646]',
-          button: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
+          muted: 'text-[#1F6F5F]',
+          panel: 'border border-[#6FCF97] bg-white/90',
+          soft: 'border border-[#6FCF97] bg-[#EEEEEE]',
+          input: 'border border-[#6FCF97] bg-white text-[#2FA084]',
+          button: 'bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]',
         }
       : {
-          muted: 'text-[#7EACB5]',
-          panel: 'border border-[#EDDCC6] bg-white',
-          soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
-          input: 'border border-[#EDDCC6] bg-white text-[#BF4646]',
-          button: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
+          muted: 'text-[#1F6F5F]',
+          panel: 'border border-[#6FCF97] bg-white',
+          soft: 'border border-[#6FCF97] bg-[#EEEEEE]',
+          input: 'border border-[#6FCF97] bg-white text-[#2FA084]',
+          button: 'bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]',
         }
 
   return (
@@ -148,7 +148,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
 
         {layoutKey === 'article-editorial' || layoutKey === 'article-journal' ? (
           <section className="mb-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-            <div className="rounded-[2.4rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-7 shadow-[0_24px_70px_rgba(126,172,181,0.14)] sm:p-9">
+            <div className="rounded-[2.4rem] border border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] p-7 shadow-[0_24px_70px_rgba(111,207,151,0.14)] sm:p-9">
               <p className={`text-xs uppercase tracking-[0.34em] ${ui.muted}`}>Archive issue</p>
               <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-foreground sm:text-6xl">{taskConfig?.description || 'Latest posts'}</h1>
               <p className={`mt-6 max-w-2xl text-sm leading-8 ${ui.muted}`}>A print-minded archive with larger headlines, quieter controls, and more deliberate separation between feature stories and supporting entries.</p>
@@ -240,38 +240,38 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         {task === 'pdf' ? (
           <section className="mb-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div className="rounded-[2.2rem] border border-[#dacfbf] bg-[linear-gradient(180deg,#fffdf8_0%,#f2ebde_100%)] p-7 shadow-[0_20px_60px_rgba(57,46,33,0.08)]">
-              <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Document archive</p>
-              <h1 className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-[#BF4646]">{taskConfig?.description || 'Documents and reports'}</h1>
-              <p className="mt-5 max-w-2xl text-sm leading-8 text-[#7EACB5]">Reports, guides, and downloadable files are presented more like a quiet index than a social feed.</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-[#1F6F5F]">Document archive</p>
+              <h1 className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-[#2FA084]">{taskConfig?.description || 'Documents and reports'}</h1>
+              <p className="mt-5 max-w-2xl text-sm leading-8 text-[#1F6F5F]">Reports, guides, and downloadable files are presented more like a quiet index than a social feed.</p>
             </div>
-            <form className="rounded-[2rem] border border-[#EDDCC6] bg-white p-6 shadow-[0_18px_50px_rgba(126,172,181,0.12)]" action={taskConfig?.route || '#'}>
-              <p className="text-xs uppercase tracking-[0.24em] text-[#7EACB5]">Filter archive</p>
+            <form className="rounded-[2rem] border border-[#6FCF97] bg-white p-6 shadow-[0_18px_50px_rgba(111,207,151,0.12)]" action={taskConfig?.route || '#'}>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#1F6F5F]">Filter archive</p>
               <div className="mt-4 flex items-center gap-3">
-                <select name="category" defaultValue={normalizedCategory} className="h-11 flex-1 rounded-xl border border-[#EDDCC6] bg-white px-3 text-sm text-[#BF4646]">
+                <select name="category" defaultValue={normalizedCategory} className="h-11 flex-1 rounded-xl border border-[#6FCF97] bg-white px-3 text-sm text-[#2FA084]">
                   <option value="all">All categories</option>
                   {CATEGORY_OPTIONS.map((item) => (
                     <option key={item.slug} value={item.slug}>{item.name}</option>
                   ))}
                 </select>
-                <button type="submit" className="h-11 rounded-xl bg-[#BF4646] px-4 text-sm font-medium text-[#FFF4EA]">Apply</button>
+                <button type="submit" className="h-11 rounded-xl bg-[#2FA084] px-4 text-sm font-medium text-[#EEEEEE]">Apply</button>
               </div>
             </form>
           </section>
         ) : null}
 
         {task === 'comment' ? (
-          <section className="mb-12 rounded-[2.2rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-8 shadow-[0_20px_60px_rgba(126,172,181,0.14)]">
-            <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Annotations desk</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#BF4646]">Responses, notes, and context kept close to the writing.</h1>
-            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#7EACB5]">Comment surfaces stay lighter and more text-led so they read like annotations beneath the archive rather than a separate noisy feed.</p>
+          <section className="mb-12 rounded-[2.2rem] border border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] p-8 shadow-[0_20px_60px_rgba(111,207,151,0.14)]">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#1F6F5F]">Annotations desk</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#2FA084]">Responses, notes, and context kept close to the writing.</h1>
+            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#1F6F5F]">Comment surfaces stay lighter and more text-led so they read like annotations beneath the archive rather than a separate noisy feed.</p>
           </section>
         ) : null}
 
         {task === 'org' ? (
-          <section className="mb-12 rounded-[2.2rem] border border-[#EDDCC6] bg-white p-8 shadow-[0_20px_60px_rgba(126,172,181,0.14)]">
-            <p className="text-xs uppercase tracking-[0.32em] text-[#7EACB5]">Collective profiles</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#BF4646]">Organizations framed with the same calm editorial tone as the archive.</h1>
-            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#7EACB5]">Teams, studios, and institutions sit between profile and directory surfaces, with stronger identity cues and less utility clutter.</p>
+          <section className="mb-12 rounded-[2.2rem] border border-[#6FCF97] bg-white p-8 shadow-[0_20px_60px_rgba(111,207,151,0.14)]">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#1F6F5F]">Collective profiles</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#2FA084]">Organizations framed with the same calm editorial tone as the archive.</h1>
+            <p className="mt-5 max-w-3xl text-sm leading-8 text-[#1F6F5F]">Teams, studios, and institutions sit between profile and directory surfaces, with stronger identity cues and less utility clutter.</p>
           </section>
         ) : null}
 
@@ -281,11 +281,6 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
             {intro.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)} className={`mt-4 text-sm leading-7 ${ui.muted}`}>{paragraph}</p>
             ))}
-            <div className="mt-4 flex flex-wrap gap-4 text-sm">
-              {intro.links.map((link) => (
-                <a key={link.href} href={link.href} className="font-semibold text-foreground hover:underline">{link.label}</a>
-              ))}
-            </div>
           </section>
         ) : null}
 

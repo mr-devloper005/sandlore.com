@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ChevronDown, LayoutGrid, LogOut, Plus, Settings, User, FileText, Building2, Tag, Image as ImageIcon } from 'lucide-react'
+import { ChevronDown, LayoutGrid, LogOut, Plus, User, FileText, Building2, Tag, Image as ImageIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -41,13 +41,13 @@ export function NavbarAuthControls() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size="sm" className="hidden h-10 gap-1 rounded-full bg-[#BF4646] px-4 text-[#FFF4EA] shadow-[0_16px_30px_rgba(191,70,70,0.22)] hover:bg-[#aa3c3c] sm:flex">
+          <Button size="sm" className="hidden h-10 gap-1 rounded-full bg-[#2FA084] px-4 text-[#EEEEEE] shadow-[0_16px_30px_rgba(47,160,132,0.22)] hover:bg-[#1F6F5F] sm:flex">
             <Plus className="h-4 w-4" />
             Create
             <ChevronDown className="h-3 w-3" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 border-[#EDDCC6] bg-[rgba(255,244,234,0.98)]">
+        <DropdownMenuContent align="end" className="w-56 border-[#6FCF97] bg-[rgba(255,244,234,0.98)]">
           {SITE_CONFIG.tasks.filter((task) => task.enabled).map((task) => {
             const Icon = taskIcons[task.key] || LayoutGrid
             return (
@@ -64,25 +64,18 @@ export function NavbarAuthControls() {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="sm" className="rounded-full border border-[#EDDCC6] bg-white px-4 text-[#7EACB5] hover:bg-[#FFF4EA] hover:text-[#BF4646]">
+          <Button variant="ghost" size="sm" className="rounded-full border border-[#6FCF97] bg-white px-4 text-[#1F6F5F] hover:bg-[#EEEEEE] hover:text-[#2FA084]">
             {user?.name ? `Hi, ${user.name.split(' ')[0]}` : 'Account'}
             <ChevronDown className="h-3.5 w-3.5" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 border-[#EDDCC6] bg-[rgba(255,244,234,0.98)]">
+        <DropdownMenuContent align="end" className="w-56 border-[#6FCF97] bg-[rgba(255,244,234,0.98)]">
           <div className="flex flex-col gap-1 p-3">
-            <span className="text-sm font-semibold text-[#BF4646]">{user?.name}</span>
-            <span className="text-xs text-[#7EACB5]">{user?.email}</span>
+            <span className="text-sm font-semibold text-[#2FA084]">{user?.name}</span>
+            <span className="text-xs text-[#1F6F5F]">{user?.email}</span>
           </div>
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/settings">
-              <Settings className="mr-2 h-4 w-4" />
-              Settings
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onSelect={handleLogout} className="text-[#BF4646] focus:text-[#BF4646]">
+          <DropdownMenuItem onSelect={handleLogout} className="text-[#2FA084] focus:text-[#2FA084]">
             <LogOut className="mr-2 h-4 w-4" />
             Sign Out
           </DropdownMenuItem>

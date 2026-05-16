@@ -29,7 +29,7 @@ const heroClasses = {
     grid: 'lg:grid-cols-[1.14fr_0.86fr]',
     card: 'border border-white/10 bg-white/8 shadow-[0_28px_100px_rgba(18,9,4,0.4)] backdrop-blur-md',
     title: 'text-white',
-    body: 'text-amber-100/78',
+    body: 'text-[#EEEEEE]/82',
     badge: 'bg-[#ffdd9c] text-[#2a160c]',
     primary: 'bg-[#ffdd9c] text-[#2a160c] hover:bg-[#ffd17d]',
     secondary: 'border border-white/18 bg-white/10 text-white hover:bg-white/16',

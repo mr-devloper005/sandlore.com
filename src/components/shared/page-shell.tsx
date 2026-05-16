@@ -1,5 +1,3 @@
-﻿'use client'
-
 import type { ReactNode } from 'react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
@@ -19,7 +17,7 @@ export function PageShell({
     <div className="min-h-screen bg-background">
       <NavbarShell />
       <main>
-        <section className="border-b border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)]">
+        <section className="border-b border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)]">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>

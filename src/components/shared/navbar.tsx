@@ -41,12 +41,12 @@ const variantClasses = {
     mobile: 'border-t border-slate-200/70 bg-white/95',
   },
   'editorial-bar': {
-    shell: 'border-b border-[#EDDCC6] bg-[#FFF4EA]/92 text-[#BF4646] backdrop-blur-xl',
-    logo: 'rounded-full border border-[#EDDCC6] bg-white shadow-sm',
-    active: 'bg-[#BF4646] text-[#FFF4EA]',
-    idle: 'text-[#7EACB5] hover:bg-[#EDDCC6] hover:text-[#BF4646]',
-    cta: 'rounded-full bg-[#7EACB5] text-[#FFF4EA] hover:bg-[#6c99a1]',
-    mobile: 'border-t border-[#EDDCC6] bg-[#FFF4EA]',
+    shell: 'border-b border-[#6FCF97] bg-[#EEEEEE]/92 text-[#2FA084] backdrop-blur-xl',
+    logo: 'rounded-full border border-[#6FCF97] bg-white shadow-sm',
+    active: 'bg-[#2FA084] text-[#EEEEEE]',
+    idle: 'text-[#1F6F5F] hover:bg-[#6FCF97] hover:text-[#2FA084]',
+    cta: 'rounded-full bg-[#1F6F5F] text-[#EEEEEE] hover:bg-[#2FA084]',
+    mobile: 'border-t border-[#6FCF97] bg-[#EEEEEE]',
   },
   'floating-bar': {
     shell: 'border-b border-transparent bg-transparent text-white',
@@ -97,7 +97,10 @@ export function Navbar() {
   const { isAuthenticated } = useAuth()
   const { recipe } = getFactoryState()
 
-  const navigation = useMemo(() => SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile'), [])
+  const navigation = useMemo(
+    () => SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile' && task.key !== 'article'),
+    []
+  )
   const primaryNavigation = navigation.slice(0, 5)
   const mobileNavigation = navigation.map((task) => ({
     name: task.label,
@@ -210,22 +213,18 @@ export function Navbar() {
       <nav className={cn('mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8', isFloating ? 'h-24 pt-4' : 'h-20')}>
         <div className="flex min-w-0 items-center gap-4 lg:gap-7">
           <Link href="/" className="flex shrink-0 items-center gap-3 whitespace-nowrap pr-2">
-            <div className={cn('flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden p-1.5', style.logo, isEditorial ? 'rounded-[1.3rem] border-[#EDDCC6] bg-[#FFF4EA]' : '')}>
-              <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="56" height="56" className="h-full w-full object-contain" />
-            </div>
+            <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="56" height="56" className="h-14 w-14 shrink-0 object-contain" />
             <div className="min-w-0 hidden sm:block">
               <span className={cn('block truncate text-xl font-semibold', isEditorial ? 'font-display tracking-[-0.04em]' : '')}>{SITE_CONFIG.name}</span>
-              <span className={cn('hidden text-[10px] uppercase tracking-[0.28em] opacity-70 sm:block', isEditorial ? 'text-[#7EACB5]' : '')}>{siteContent.navbar.tagline}</span>
             </div>
           </Link>
 
           {isEditorial ? (
             <div className="hidden items-center gap-4 xl:flex">
-              <span className="issue-kicker shrink-0">Current issue</span>
               {primaryNavigation.map((task) => {
                 const isActive = pathname.startsWith(task.route)
                 return (
-                  <Link key={task.key} href={task.route} className={cn('rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-colors', isActive ? 'bg-[#BF4646] text-[#FFF4EA]' : 'text-[#7EACB5] hover:bg-[#EDDCC6] hover:text-[#BF4646]')}>
+                  <Link key={task.key} href={task.route} className={cn('rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-colors', isActive ? 'bg-[#2FA084] text-[#EEEEEE]' : 'text-[#1F6F5F] hover:bg-[#6FCF97] hover:text-[#2FA084]')}>
                     {task.label}
                   </Link>
                 )
@@ -281,16 +280,10 @@ export function Navbar() {
 
           {isEditorial ? (
             <>
-              <Link href="/search" className={cn('hidden text-sm font-semibold uppercase tracking-[0.18em] transition-colors lg:inline-flex', pathname.startsWith('/search') ? 'text-[#BF4646]' : 'text-[#7EACB5] hover:text-[#BF4646]')}>
-                Search
-              </Link>
-              <Link href="/about" className={cn('hidden text-sm font-semibold uppercase tracking-[0.18em] transition-colors lg:inline-flex', pathname.startsWith('/about') ? 'text-[#BF4646]' : 'text-[#7EACB5] hover:text-[#BF4646]')}>
-                About
-              </Link>
             </>
           ) : null}
 
-          <Button variant="ghost" size="icon" asChild className={cn('hidden rounded-full md:flex', isEditorial ? 'border border-[#EDDCC6] bg-[#FFF4EA] text-[#BF4646] hover:bg-[#EDDCC6]' : '')}>
+          <Button variant="ghost" size="icon" asChild className={cn('hidden rounded-full md:flex', isEditorial ? 'border border-[#6FCF97] bg-[#EEEEEE] text-[#2FA084] hover:bg-[#6FCF97]' : '')}>
             <Link href="/search">
               <Search className="h-5 w-5" />
               <span className="sr-only">Search</span>
@@ -301,7 +294,7 @@ export function Navbar() {
             <NavbarAuthControls />
           ) : (
             <div className="hidden items-center gap-2 md:flex">
-              <Button variant="ghost" size="sm" asChild className={cn('rounded-full px-4', isEditorial ? 'text-[#7EACB5] hover:bg-[#EDDCC6] hover:text-[#BF4646]' : '')}>
+              <Button variant="ghost" size="sm" asChild className={cn('rounded-full px-4', isEditorial ? 'text-[#1F6F5F] hover:bg-[#6FCF97] hover:text-[#2FA084]' : '')}>
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button size="sm" asChild className={style.cta}>
@@ -329,7 +322,7 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className={style.mobile}>
           <div className="space-y-2 px-4 py-4">
-            <Link href="/search" onClick={() => setIsMobileMenuOpen(false)} className={cn('mb-3 flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-muted-foreground', isEditorial ? 'border-[#EDDCC6] bg-[#FFF4EA] text-[#7EACB5]' : '')}>
+            <Link href="/search" onClick={() => setIsMobileMenuOpen(false)} className={cn('mb-3 flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-muted-foreground', isEditorial ? 'border-[#6FCF97] bg-[#EEEEEE] text-[#1F6F5F]' : '')}>
               <Search className="h-4 w-4" />
               Search the archive
             </Link>
@@ -342,16 +335,6 @@ export function Navbar() {
                 </Link>
               )
             })}
-            {isEditorial ? (
-              <>
-                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 rounded-2xl border border-[#EDDCC6] bg-[#FFF4EA] px-4 py-3 text-sm font-semibold text-[#BF4646]">
-                  About
-                </Link>
-                <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 rounded-2xl bg-[#7EACB5] px-4 py-3 text-sm font-semibold text-[#FFF4EA]">
-                  Join the Journal
-                </Link>
-              </>
-            ) : null}
           </div>
         </div>
       )}

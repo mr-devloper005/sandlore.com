@@ -89,7 +89,7 @@ export default function LoginPage() {
 
     try {
       await login(nextEmail, nextPassword)
-      router.push('/dashboard')
+      router.push('/')
       router.refresh()
     } catch {
       setError('Unable to sign in right now. Please try again.')
@@ -98,7 +98,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/dashboard')
+      router.push('/')
     }
   }, [isAuthenticated, router])
 
@@ -137,7 +137,7 @@ export default function LoginPage() {
                 onChange={(event) => setPassword(event.target.value)}
                 autoComplete="current-password"
               />
-              {error ? <p className="text-sm text-[#BF4646]">{error}</p> : null}
+              {error ? <p className="text-sm text-[#2FA084]">{error}</p> : null}
               <button type="submit" disabled={isLoading} className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70 ${config.action}`}>
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>

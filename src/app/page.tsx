@@ -101,14 +101,14 @@ function getDirectoryTone(brandPack: string) {
 
 function getEditorialTone() {
   return {
-    shell: 'bg-[#FFF4EA] text-[#BF4646]',
-    panel: 'border border-[#EDDCC6] bg-white shadow-[0_24px_60px_rgba(126,172,181,0.14)]',
-    soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
-    muted: 'text-[#7EACB5]',
-    title: 'text-[#BF4646]',
-    badge: 'bg-[#BF4646] text-[#FFF4EA]',
-    action: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#ab3e3e]',
-    actionAlt: 'border border-[#EDDCC6] bg-transparent text-[#7EACB5] hover:bg-[#EDDCC6]',
+    shell: 'bg-[#EEEEEE] text-[#2FA084]',
+    panel: 'border border-[#6FCF97] bg-white shadow-[0_24px_60px_rgba(111,207,151,0.14)]',
+    soft: 'border border-[#6FCF97] bg-[#EEEEEE]',
+    muted: 'text-[#1F6F5F]',
+    title: 'text-[#2FA084]',
+    badge: 'bg-[#2FA084] text-[#EEEEEE]',
+    action: 'bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]',
+    actionAlt: 'border border-[#6FCF97] bg-transparent text-[#1F6F5F] hover:bg-[#6FCF97]',
   }
 }
 
@@ -278,18 +278,7 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
   return (
     <main className={tone.shell}>
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <div className="issue-rule flex flex-wrap items-center justify-between gap-3 border-b pb-5">
-          <div className="flex items-center gap-3">
-            <span className="issue-kicker">Issue No. 01</span>
-            <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>Article-led edition</span>
-          </div>
-          <div className={`flex items-center gap-5 text-xs uppercase tracking-[0.24em] ${tone.muted}`}>
-            <span>{SITE_CONFIG.name}</span>
-            <span>{articlePosts.length || 1} stories in view</span>
-          </div>
-        </div>
-
-        <div className="grid gap-8 pt-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
           {lead ? (
             <Link href={`/articles/${lead.slug}`} className={`group overflow-hidden rounded-[2.6rem] ${tone.panel}`}>
               <div className="grid lg:grid-cols-[0.94fr_1.06fr]">
@@ -366,7 +355,6 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
       <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <div className={`rounded-[2.2rem] p-7 ${tone.soft}`}>
-            <p className="issue-kicker">From the desk</p>
             <h2 className={`mt-4 text-3xl font-semibold tracking-[-0.05em] ${tone.title}`}>
               Sandlore favors atmosphere, composition, and reading comfort over feed-first speed.
             </h2>
