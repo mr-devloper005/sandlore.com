@@ -31,7 +31,7 @@ export default function CareersPage() {
       title="Careers"
       description={`Help shape the archive, product language, and editorial experience at ${SITE_CONFIG.name}.`}
       actions={
-        <Button asChild className="rounded-full bg-[#BF4646] text-[#FFF4EA] hover:bg-[#aa3c3c]">
+        <Button asChild className="rounded-full bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]">
           <Link href="/contact">Get In Touch</Link>
         </Button>
       }
@@ -82,7 +82,7 @@ export default function CareersPage() {
             <div className="mt-6 space-y-3">
               {principles.map((item) => (
                 <div key={item.title} className="rounded-[1.4rem] border border-border bg-white/80 p-4">
-                  <item.icon className="h-4 w-4 text-[#BF4646]" />
+                  <item.icon className="h-4 w-4 text-[#2FA084]" />
                   <p className="mt-3 text-sm font-semibold text-foreground">{item.title}</p>
                   <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.body}</p>
                 </div>

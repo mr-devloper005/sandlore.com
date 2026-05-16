@@ -26,10 +26,10 @@ const footerLinks = {
   })),
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Team', href: '/team' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Press', href: '/press' },
+    // { name: 'Team', href: '/team' },
+    // { name: 'Careers', href: '/careers' },
+    // { name: 'Blog', href: '/blog' },
+    //  { name: 'Press', href: '/press' },
     { name: 'Contact', href: '/contact' },
   ],
   resources: [
@@ -68,6 +68,9 @@ export function Footer() {
           <div>
             <p className="text-lg font-semibold">{SITE_CONFIG.name}</p>
             <p className="mt-1 text-sm text-[#56604b]">{SITE_CONFIG.description}</p>
+            <Link href="/help" className="mt-2 inline-flex text-sm font-medium underline underline-offset-4 hover:opacity-80">
+              Help Center
+            </Link>
           </div>
           <div className="flex flex-wrap gap-3">
             {enabledTasks.slice(0, 5).map((task) => (
@@ -141,47 +144,44 @@ export function Footer() {
 
   if (recipe.footer === 'editorial-footer') {
     return (
-      <footer className="border-t border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] text-[#BF4646]">
+      <footer className="border-t border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] text-[#2FA084]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.85fr_0.85fr]">
             <div className="magazine-frame rounded-[2rem] p-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#EDDCC6] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7EACB5]">
-                <Sparkles className="h-3.5 w-3.5" />
-                From the desk
-              </div>
               <h3 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{SITE_CONFIG.name}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#7EACB5]">{SITE_CONFIG.description}</p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-[#1F6F5F]">{SITE_CONFIG.description}</p>
               <div className="mt-7 issue-rule pt-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#7EACB5]">Reading paths</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#1F6F5F]">Reading paths</p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <Link href="/articles" className="rounded-full bg-[#BF4646] px-4 py-2 text-sm font-semibold text-[#FFF4EA] hover:bg-[#ab3e3e]">Open archive</Link>
-                  <Link href="/search" className="rounded-full border border-[#EDDCC6] px-4 py-2 text-sm font-semibold text-[#7EACB5] hover:bg-[#FFF4EA]">Search archive</Link>
-                  <Link href="/contact" className="rounded-full border border-[#EDDCC6] px-4 py-2 text-sm font-semibold text-[#7EACB5] hover:bg-[#FFF4EA]">Contact the desk</Link>
+                  <Link href="/articles" className="rounded-full bg-[#2FA084] px-4 py-2 text-sm font-semibold text-[#EEEEEE] hover:bg-[#1F6F5F]">Open archive</Link>
+                  <Link href="/search" className="rounded-full border border-[#6FCF97] px-4 py-2 text-sm font-semibold text-[#1F6F5F] hover:bg-[#EEEEEE]">Search archive</Link>
+                  <Link href="/contact" className="rounded-full border border-[#6FCF97] px-4 py-2 text-sm font-semibold text-[#1F6F5F] hover:bg-[#EEEEEE]">Contact the desk</Link>
                 </div>
               </div>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7EACB5]">Sections</h4>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1F6F5F]">Sections</h4>
               <ul className="mt-5 space-y-3 text-sm">
                 {footerLinks.platform.map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#7EACB5]">{item.name}</Link></li>
+                  <li key={item.name}><Link href={item.href} className="hover:text-[#1F6F5F]">{item.name}</Link></li>
                 ))}
-                <li><Link href="/search" className="hover:text-[#7EACB5]">Search</Link></li>
-                <li><Link href="/contact" className="hover:text-[#7EACB5]">Contact
+                <li><Link href="/search" className="hover:text-[#1F6F5F]">Search</Link></li>
+                <li><Link href="/contact" className="hover:text-[#1F6F5F]">Contact
                 
                 </Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7EACB5]">Further Reading</h4>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1F6F5F]">Further Reading</h4>
               <ul className="mt-5 space-y-3 text-sm">
                 {[...footerLinks.company.slice(0, 3), ...footerLinks.legal.slice(0, 2)].map((item) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#7EACB5]">{item.name}</Link></li>
+                  <li key={item.name}><Link href={item.href} className="hover:text-[#1F6F5F]">{item.name}</Link></li>
                 ))}
+                <li><Link href="/help" className="hover:text-[#1F6F5F]">Help Center</Link></li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 issue-rule pt-5 text-xs uppercase tracking-[0.24em] text-[#7EACB5]">
+          <div className="mt-10 issue-rule pt-5 text-xs uppercase tracking-[0.24em] text-[#1F6F5F]">
             &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. {siteContent.footer.tagline}
           </div>
         </div>

@@ -289,14 +289,14 @@ export default function CreateTaskPage() {
         <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
           <div className="flex flex-wrap gap-2">
             <Badge variant="secondary">{taskConfig.label}</Badge>
-            <Badge variant="outline">Local-only</Badge>
+            {taskKey !== "article" ? <Badge variant="outline">Local-only</Badge> : null}
           </div>
 
           <div className="mt-6 grid gap-6">
             {formConfig.fields.map((field) => (
               <div key={field.key} className="grid gap-2">
                 <Label>
-                  {field.label} {field.required ? <span className="text-red-500">*</span> : null}
+                  {field.label} {field.required ? <span className="text-primary">*</span> : null}
                 </Label>
                 {field.type === "textarea" ? (
                   <Textarea
@@ -378,7 +378,7 @@ export default function CreateTaskPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Button onClick={handleSubmit}>
               <Save className="mr-2 h-4 w-4" />
-              Save locally
+              {taskKey === "article" ? "Save" : "Save locally"}
             </Button>
             <Button variant="ghost" asChild>
               <Link href={taskConfig.route}>

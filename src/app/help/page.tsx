@@ -1,4 +1,4 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 import { BookOpen, Compass, MessageSquareMore } from 'lucide-react'
 import { PageShell } from '@/components/shared/page-shell'
 import { Card, CardContent } from '@/components/ui/card'
@@ -24,7 +24,7 @@ export default function HelpPage() {
       title="Help Center"
       description="Find archive guidance, support answers, and publishing help in one place."
       actions={
-        <Button asChild className="rounded-full bg-[#BF4646] text-[#FFF4EA] hover:bg-[#aa3c3c]">
+        <Button asChild className="rounded-full bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]">
           <Link href="/contact">Contact Support</Link>
         </Button>
       }
@@ -42,7 +42,7 @@ export default function HelpPage() {
           {quickRoutes.map((item) => (
             <Card key={item.title} className="rounded-[1.9rem] border-border bg-secondary/40">
               <CardContent className="p-6">
-                <item.icon className="h-5 w-5 text-[#BF4646]" />
+                <item.icon className="h-5 w-5 text-[#2FA084]" />
                 <h2 className="mt-4 text-lg font-semibold text-foreground">{item.title}</h2>
                 <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.body}</p>
               </CardContent>

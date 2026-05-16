@@ -84,15 +84,15 @@ export default async function SearchPage({
           {category ? <input type="hidden" name="category" value={category} /> : null}
           {task ? <input type="hidden" name="task" value={task} /> : null}
           <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7EACB5]" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1F6F5F]" />
             <Input
               name="q"
               defaultValue={query}
               placeholder="Search the archive..."
-              className="h-11 rounded-full border-[#EDDCC6] bg-white pl-9 text-[#BF4646] shadow-none"
+              className="h-11 rounded-full border-[#6FCF97] bg-white pl-9 text-[#2FA084] shadow-none"
             />
           </div>
-          <Button type="submit" className="h-11 rounded-full bg-[#BF4646] px-5 text-[#FFF4EA] hover:bg-[#ab3e3e]">
+          <Button type="submit" className="h-11 rounded-full bg-[#2FA084] px-5 text-[#EEEEEE] hover:bg-[#1F6F5F]">
             Search
           </Button>
         </form>
@@ -104,7 +104,7 @@ export default async function SearchPage({
           category ? `Category: ${category}` : 'All categories',
           task ? `Task: ${task}` : 'All tasks',
         ].map((item) => (
-          <span key={item} className="rounded-full border border-[#EDDCC6] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#7EACB5]">
+          <span key={item} className="rounded-full border border-[#6FCF97] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#1F6F5F]">
             {item}
           </span>
         ))}
@@ -118,7 +118,7 @@ export default async function SearchPage({
           })}
         </div>
       ) : (
-        <div className="rounded-[2rem] border border-dashed border-[#EDDCC6] bg-[#FFF4EA] p-10 text-center text-[#7EACB5]">
+        <div className="rounded-[2rem] border border-dashed border-[#6FCF97] bg-[#EEEEEE] p-10 text-center text-[#1F6F5F]">
           No matching posts yet.
         </div>
       )}

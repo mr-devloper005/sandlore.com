@@ -33,7 +33,7 @@ export default function DevelopersPage() {
       title="Developers"
       description="A technical overview of the public archive surfaces and the systems that support them."
       actions={
-        <Button asChild className="rounded-full bg-[#BF4646] text-[#FFF4EA] hover:bg-[#aa3c3c]">
+        <Button asChild className="rounded-full bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]">
           <Link href="/contact">Request Technical Help</Link>
         </Button>
       }
@@ -55,7 +55,7 @@ export default function DevelopersPage() {
         {surfaces.map((item) => (
           <Card key={item.title} className="rounded-[1.8rem] border-border bg-card">
             <CardContent className="p-6">
-              <item.icon className="h-5 w-5 text-[#BF4646]" />
+              <item.icon className="h-5 w-5 text-[#2FA084]" />
               <h3 className="mt-4 text-xl font-semibold text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.body}</p>
             </CardContent>

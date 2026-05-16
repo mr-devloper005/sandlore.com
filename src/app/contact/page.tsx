@@ -19,11 +19,11 @@ function getTone(kind: ReturnType<typeof getProductKind>) {
   }
   if (kind === 'editorial') {
     return {
-      shell: 'bg-[#FFF4EA] text-[#BF4646]',
-      panel: 'border border-[#EDDCC6] bg-white',
-      soft: 'border border-[#EDDCC6] bg-[#FFF4EA]',
-      muted: 'text-[#7EACB5]',
-      action: 'bg-[#BF4646] text-[#FFF4EA] hover:bg-[#aa3c3c]',
+      shell: 'bg-[#EEEEEE] text-[#2FA084]',
+      panel: 'border border-[#6FCF97] bg-white',
+      soft: 'border border-[#6FCF97] bg-[#EEEEEE]',
+      muted: 'text-[#1F6F5F]',
+      action: 'bg-[#2FA084] text-[#EEEEEE] hover:bg-[#1F6F5F]',
     }
   }
   if (kind === 'visual') {
@@ -89,7 +89,7 @@ export default function ContactPage() {
             <div className="mt-8 space-y-4">
               {lanes.map((lane) => (
                 <div key={lane.title} className={`rounded-[1.8rem] p-5 ${tone.soft}`}>
-                  <lane.icon className="h-5 w-5 text-[#BF4646]" />
+                  <lane.icon className="h-5 w-5 text-[#2FA084]" />
                   <h2 className="mt-3 text-xl font-semibold">{lane.title}</h2>
                   <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{lane.body}</p>
                 </div>

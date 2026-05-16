@@ -62,10 +62,10 @@ const cardStyles = {
     badge: 'bg-slate-950 text-white',
   },
   'editorial-feature': {
-    frame: 'rounded-[1.8rem] border border-[#EDDCC6] bg-[#FFF4EA] shadow-[0_18px_55px_rgba(126,172,181,0.14)] hover:-translate-y-1 hover:shadow-[0_26px_75px_rgba(126,172,181,0.18)]',
-    muted: 'text-[#7EACB5]',
-    title: 'text-[#BF4646]',
-    badge: 'bg-[#BF4646] text-[#FFF4EA]',
+    frame: 'rounded-[1.8rem] border border-[#6FCF97] bg-[#EEEEEE] shadow-[0_18px_55px_rgba(111,207,151,0.14)] hover:-translate-y-1 hover:shadow-[0_26px_75px_rgba(111,207,151,0.18)]',
+    muted: 'text-[#1F6F5F]',
+    title: 'text-[#2FA084]',
+    badge: 'bg-[#2FA084] text-[#EEEEEE]',
   },
   'studio-panel': {
     frame: 'rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(12,23,43,0.96))] text-white shadow-[0_24px_80px_rgba(15,23,42,0.35)] hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.42)]',
@@ -163,21 +163,21 @@ export function TaskPostCard({
 
   if (isBookmarkVariant) {
     return (
-      <Link href={href} className="group flex h-full flex-row items-start gap-4 overflow-hidden rounded-[1.9rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] p-5 text-[#BF4646] shadow-[0_18px_55px_rgba(126,172,181,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(126,172,181,0.18)]">
+      <Link href={href} className="group flex h-full flex-row items-start gap-4 overflow-hidden rounded-[1.9rem] border border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] p-5 text-[#2FA084] shadow-[0_18px_55px_rgba(111,207,151,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(111,207,151,0.18)]">
         <div className="mt-1 rounded-full bg-white/70 p-2.5 text-current transition group-hover:scale-105">
           <ExternalLink className="h-4 w-4" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full bg-[#BF4646] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#FFF4EA]">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#2FA084] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#EEEEEE]">
               <Tag className="h-3.5 w-3.5" />
               {category}
             </span>
-            {content.location ? <span className="inline-flex items-center gap-1 text-xs text-[#7EACB5]"><MapPin className="h-3.5 w-3.5" />{content.location}</span> : null}
+            {content.location ? <span className="inline-flex items-center gap-1 text-xs text-[#1F6F5F]"><MapPin className="h-3.5 w-3.5" />{content.location}</span> : null}
           </div>
-          <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-snug text-[#BF4646] group-hover:opacity-85">{post.title}</h3>
-          <p className="mt-2 line-clamp-3 text-sm leading-7 text-[#7EACB5]">{getExcerpt(content.description || post.summary, compact ? 120 : 180) || 'Explore this bookmark.'}</p>
-          {content.email ? <div className="mt-3 inline-flex items-center gap-1 text-xs text-[#7EACB5]"><Mail className="h-3.5 w-3.5" />{content.email}</div> : null}
+          <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-snug text-[#2FA084] group-hover:opacity-85">{post.title}</h3>
+          <p className="mt-2 line-clamp-3 text-sm leading-7 text-[#1F6F5F]">{getExcerpt(content.description || post.summary, compact ? 120 : 180) || 'Explore this bookmark.'}</p>
+          {content.email ? <div className="mt-3 inline-flex items-center gap-1 text-xs text-[#1F6F5F]"><Mail className="h-3.5 w-3.5" />{content.email}</div> : null}
         </div>
       </Link>
     )
@@ -185,18 +185,18 @@ export function TaskPostCard({
 
   if (variant === 'article' || variant === 'comment') {
     return (
-      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] shadow-[0_22px_60px_rgba(126,172,181,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(126,172,181,0.18)]">
+      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] shadow-[0_22px_60px_rgba(111,207,151,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(111,207,151,0.18)]">
         <div className="relative aspect-[16/11] overflow-hidden bg-[#e8dfd2]">
           <ContentImage src={image} alt={altText} fill sizes={imageSizes} quality={75} className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" intrinsicWidth={960} intrinsicHeight={720} />
         </div>
         <div className="flex flex-1 flex-col p-6">
           <div className="flex items-center justify-between gap-3">
             <span className="issue-kicker">{variant === 'comment' ? 'Response' : 'Feature'}</span>
-            <span className="rounded-full border border-[#EDDCC6] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7EACB5]">{category}</span>
+            <span className="rounded-full border border-[#6FCF97] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1F6F5F]">{category}</span>
           </div>
-          <h3 className="mt-4 line-clamp-3 text-[1.55rem] font-semibold leading-[1.05] tracking-[-0.05em] text-[#BF4646]">{post.title}</h3>
-          <p className="mt-4 line-clamp-4 text-sm leading-7 text-[#7EACB5]">{getExcerpt(content.description || post.summary, compact ? 140 : 180) || 'Explore this story.'}</p>
-          <div className="mt-auto pt-6 text-sm font-semibold text-[#BF4646]">Read piece</div>
+          <h3 className="mt-4 line-clamp-3 text-[1.55rem] font-semibold leading-[1.05] tracking-[-0.05em] text-[#2FA084]">{post.title}</h3>
+          <p className="mt-4 line-clamp-4 text-sm leading-7 text-[#1F6F5F]">{getExcerpt(content.description || post.summary, compact ? 140 : 180) || 'Explore this story.'}</p>
+          <div className="mt-auto pt-6 text-sm font-semibold text-[#2FA084]">Read piece</div>
         </div>
       </Link>
     )
@@ -224,15 +224,15 @@ export function TaskPostCard({
 
   if (variant === 'profile' || variant === 'org') {
     return (
-      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#EDDCC6] bg-white shadow-[0_18px_54px_rgba(126,172,181,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(126,172,181,0.18)]">
-        <div className="relative aspect-[4/3] overflow-hidden bg-[#FFF4EA]">
+      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#6FCF97] bg-white shadow-[0_18px_54px_rgba(111,207,151,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(111,207,151,0.18)]">
+        <div className="relative aspect-[4/3] overflow-hidden bg-[#EEEEEE]">
           <ContentImage src={image} alt={altText} fill sizes={imageSizes} quality={75} className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" intrinsicWidth={960} intrinsicHeight={720} />
         </div>
         <div className="flex flex-1 flex-col p-5">
           <span className="issue-kicker">{variant === 'org' ? 'Collective' : 'Profile'}</span>
-          <h3 className="mt-3 line-clamp-2 text-xl font-semibold leading-tight text-[#BF4646]">{post.title}</h3>
-          <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#7EACB5]">{getExcerpt(content.description || post.summary) || 'Explore this profile.'}</p>
-          {content.location ? <div className="mt-4 inline-flex items-center gap-1 text-xs text-[#7EACB5]"><MapPin className="h-3.5 w-3.5" />{content.location}</div> : null}
+          <h3 className="mt-3 line-clamp-2 text-xl font-semibold leading-tight text-[#2FA084]">{post.title}</h3>
+          <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#1F6F5F]">{getExcerpt(content.description || post.summary) || 'Explore this profile.'}</p>
+          {content.location ? <div className="mt-4 inline-flex items-center gap-1 text-xs text-[#1F6F5F]"><MapPin className="h-3.5 w-3.5" />{content.location}</div> : null}
         </div>
       </Link>
     )
@@ -240,23 +240,23 @@ export function TaskPostCard({
 
   if (variant === 'pdf') {
     return (
-      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[1.8rem] border border-[#EDDCC6] bg-[linear-gradient(180deg,#FFF4EA_0%,#EDDCC6_100%)] shadow-[0_18px_52px_rgba(126,172,181,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(126,172,181,0.18)]">
-        <div className="relative aspect-[4/5] overflow-hidden bg-[#FFF4EA] p-5">
-          <div className="absolute inset-5 rounded-[1.2rem] border border-[#EDDCC6] bg-white shadow-[0_14px_34px_rgba(126,172,181,0.12)]" />
+      <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-[1.8rem] border border-[#6FCF97] bg-[linear-gradient(180deg,#EEEEEE_0%,#6FCF97_100%)] shadow-[0_18px_52px_rgba(111,207,151,0.14)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(111,207,151,0.18)]">
+        <div className="relative aspect-[4/5] overflow-hidden bg-[#EEEEEE] p-5">
+          <div className="absolute inset-5 rounded-[1.2rem] border border-[#6FCF97] bg-white shadow-[0_14px_34px_rgba(111,207,151,0.12)]" />
           <div className="relative z-10 flex h-full flex-col justify-between">
-            <span className="inline-flex w-fit items-center gap-1 rounded-full bg-[#BF4646] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FFF4EA]">
+            <span className="inline-flex w-fit items-center gap-1 rounded-full bg-[#2FA084] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#EEEEEE]">
               <FileText className="h-3.5 w-3.5" />
               Document
             </span>
-            <div className="rounded-[1rem] bg-white/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#7EACB5]">
+            <div className="rounded-[1rem] bg-white/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1F6F5F]">
               {category}
             </div>
           </div>
         </div>
         <div className="flex flex-1 flex-col p-5">
-          <h3 className="line-clamp-2 text-xl font-semibold leading-tight text-[#BF4646]">{post.title}</h3>
-          <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#7EACB5]">{getExcerpt(content.description || post.summary) || 'Open this document.'}</p>
-          <div className="mt-auto pt-5 text-sm font-semibold text-[#BF4646]">Open file</div>
+          <h3 className="line-clamp-2 text-xl font-semibold leading-tight text-[#2FA084]">{post.title}</h3>
+          <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#1F6F5F]">{getExcerpt(content.description || post.summary) || 'Open this document.'}</p>
+          <div className="mt-auto pt-5 text-sm font-semibold text-[#2FA084]">Open file</div>
         </div>
       </Link>
     )

@@ -174,7 +174,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
                 {listing.category}
               </Badge>
               <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                <Star className="h-4 w-4 fill-primary text-primary" />
                 <span className="text-sm font-medium">{listing.rating}</span>
                 <span className="text-xs text-muted-foreground">({listing.reviewsCount})</span>
               </div>
@@ -213,11 +213,11 @@ export function ListingCard({ listing }: { listing: Listing }) {
 // Classified Ad Card
 export function ClassifiedAdCard({ ad }: { ad: ClassifiedAd }) {
   const conditionColors = {
-    'new': 'bg-green-500/10 text-green-500',
-    'like-new': 'bg-blue-500/10 text-blue-500',
-    'good': 'bg-yellow-500/10 text-yellow-500',
-    'fair': 'bg-orange-500/10 text-orange-500',
-    'poor': 'bg-red-500/10 text-red-500',
+    'new': 'bg-primary/10 text-primary',
+    'like-new': 'bg-secondary/20 text-secondary-foreground',
+    'good': 'bg-accent/20 text-accent-foreground',
+    'fair': 'bg-muted text-foreground',
+    'poor': 'bg-destructive/10 text-destructive',
   }
 
   const [savedIds, setSavedIds] = useState<string[]>([])
@@ -344,8 +344,8 @@ export function StatsCard({
   trend?: 'up' | 'down' | 'neutral'
 }) {
   const trendColors = {
-    up: 'text-green-500',
-    down: 'text-red-500',
+    up: 'text-primary',
+    down: 'text-destructive',
     neutral: 'text-muted-foreground'
   }
 

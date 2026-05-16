@@ -328,8 +328,8 @@ export default function DashboardPage() {
                   variant="secondary"
                   className={
                     stat.trend === "up"
-                      ? "bg-green-500/10 text-green-500"
-                      : "bg-red-500/10 text-red-500"
+                      ? "bg-primary/10 text-primary"
+                      : "bg-destructive/10 text-destructive"
                   }
                 >
                   {stat.trend === "up" ? (

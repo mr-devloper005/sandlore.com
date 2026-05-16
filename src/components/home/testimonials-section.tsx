@@ -49,7 +49,7 @@ export function TestimonialsSection() {
                     </div>
                     <div className="flex">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                       ))}
                     </div>
                   </div>
